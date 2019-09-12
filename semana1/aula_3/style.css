@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.7em;
+}
+
+a {
+  color: rgb(39, 37, 37);
+  text-decoration: none;
+}
+
+/* h1 {
+  padding-top: 20px;
+  padding-left: 20px;
+} */
+
+#navbar {
+  background-color: rgb(49, 45, 45);
+  color: white;
+  overflow: auto;
+ width: 100%;
+}
+
+#navbar a {
+  color: white;
+}
+
+#navbar h1 {
+  float: left;
+  padding-top: 20px;padding-left: 20px; 
+}
+
+#navbar ul {
+  list-style: none;
+  float: right;
+}
+
+#navbar ul li {
+  float: left;
+}
+
+#navbar ul li a {
+  display: block;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.current {
+  background-color: rgb(61, 59, 56);
+  color: #ff9b91ff;
+}
+
+#cor_pantone {
+  float: right;
+  width: 60%;
+  height: 400px;
+  padding-bottom: 30px;
+  
+}
+
+#sala_pantone {
+  float: left; 
+  width: 40%;
+  height: 400px;
+  padding-bottom: 30px;
+}
+
+.container h1 {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-family: 'Roboto';
+  color: rgb(61, 59, 56);
+}
+
+#mural {
+  display: block;
+  background-color:rgba(255, 154, 145, 0.537);
+  font-size: 25px;
+  text-align: center;
+}
+
+#controle_estoque h2 {
+  display: block;
+  background-color: rgba(255, 154, 145, 0.428);
+  font-family: 'Roboto';
+  color: rgb(61, 59, 56);
+  text-align: center;
+  padding: 20px;
+}
+
+table {
+  display: block;
+}
+
+table th {
+  padding: 30px;
+  text-align: center;
+}
+
+table td {
+  padding: 30px;
+  text-align: center;
+}
+
+#add_produto a{
+  float: right;
+  padding: 20px;
+  font-weight: bold;
+
+}
+#add_produto a:hover{
+background-color: #ff9b91ff;
+}
+
+.equipe {
+  display: block;
+  background-color: rgba(255, 154, 145, 0.353);
+  font-family: 'Roboto';
+  color: rgb(61, 59, 56);
+  text-align: center;
+}
+
+.lista_funcionarios {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  list-style: none;
+  color: rgb(61, 59, 56);
+}
+
+
+#feedback h2{
+  color: rgb(61, 59, 56);
+  padding: 10px;
+  background-color:  rgba(255, 154, 145, 0.319);
+  text-align: center;
+  
+}
+
+#feedback p{
+  padding: 20px;
+  padding-bottom: 30px;
+  text-align: left;
+  color: rgb(61, 59, 56);
+   
+}
+
+#feedback input{
+  display: block;
+  padding:80px;
+  text-align: center;
+  width: 90%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#feedback button {
+  display: block;
+  padding: 10px;
+  width: 15%;
+  margin: auto;
+  
+  
+
+}
+
+
+
+
