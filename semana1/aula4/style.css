@@ -15,11 +15,6 @@ a {
   text-decoration: none;
 }
 
-/* h1 {
-  padding-top: 20px;
-  padding-left: 20px;
-} */
-
 #navbar {
   background-color: #444;
   color: white;
@@ -63,15 +58,12 @@ a {
   float: right;
   width: 60%;
   height: 400px;
-  
-  
 }
 
 #sala_pantone {
   float: left; 
   width: 40%;
   height: 400px;
-  
 }
 
 
@@ -83,11 +75,11 @@ a {
   width: 60%;
 }
 
-#bv h1{
- padding: 30px;
- font-size: 50px;
- color: rgba(61, 59, 56, 0.761);
- text-align: left;
+#bv h1 {
+  padding: 30px;
+  font-size: 50px;
+  color: rgba(61, 59, 56, 0.761);
+  text-align: left;
 
 }
 
@@ -105,55 +97,48 @@ a {
   text-align: left;
   padding: 30px;
   padding-left: 40px;
-  /* overflow: hidden; */
-  
 }
 
 #form {
   text-align: left;
-  /* padding: 30px; */
   display: block;
-  
 }
 
-#form h3{
+#form h3 {
   color: rgb(39, 37, 37);
   padding: 20px;
   padding-bottom: 40px;
   font-size: 20px;
   text-align: center;
-  
 }
 
-#form input{
+#form input {
   display: block;
   width: 45%;
   text-align: center;
   position: relative;
   left: 130px;
   bottom: 28px;
-  /* padding: 0px; */
 }
 
-#form label{
+#form label {
   color: rgb(61, 59, 56);
   font-size: 20px;
   margin-left: 40px;
 }
 
-#form button{
-color: rgb(61, 59, 56);
-padding: 10px;
-width: 20%;
-position: relative;
-left: 265px;
-bottom: 10px;
+#form button {
+  color: rgb(61, 59, 56);
+  padding: 10px;
+  width: 20%;
+  position: relative;
+  left: 265px;
+  bottom: 10px;
 }
 
 #controle_estoque h2 {
   display: block;
   background-color: rgba(255, 154, 145, 0.428);
-  font-family: 'Roboto';
   color: rgb(61, 59, 56);
   text-align: center;
   padding: 20px;
@@ -174,13 +159,13 @@ table td {
   text-align: center;
 }
 
-#add_produto a{
+#add_produto a {
   float: right;
   padding: 20px;
   font-weight: bold;
-
 }
-#add_produto a:hover{
+
+#add_produto a:hover {
 background-color: #ff9b91ff;
 }
 
@@ -198,23 +183,22 @@ background-color: #ff9b91ff;
   padding-bottom: 30px;
   list-style: none;
   color: rgb(61, 59, 56);
+  font-weight: bold;
 }
 
 
-#feedback h2{
+#feedback h2 {
   color: rgb(61, 59, 56);
   padding: 10px;
   background-color:  rgba(255, 154, 145, 0.319);
   text-align: center;
-  
 }
 
-#feedback p{
+#feedback p {
   padding: 20px;
   padding-bottom: 30px;
   text-align: left;
   color: rgb(61, 59, 56);
-   
 }
 
 #feedback input {
@@ -224,7 +208,6 @@ background-color: #ff9b91ff;
   width: 90%;
   margin-left: 20px;
   margin-bottom: 20px;
-  
 }
 
 #feedback button {
@@ -233,7 +216,6 @@ background-color: #ff9b91ff;
   width: 15%;
   margin: auto;
   margin-bottom: 10px;
-
 }
 
 #footer {
@@ -244,22 +226,20 @@ background-color: #ff9b91ff;
 }
 
 .add_produto {
-color: #444
-padding: 20px;
+color: #444;
+padding-bottom: 20px;
 margin: 20px;
 }
 
-.add_produto input{
+.add_produto input {
   display: block
-  
 }
 
 .add_produto button {
   margin-left: 100px;
-  margin-bottom:10px;
+  margin-top: 10px;
   padding: 10px;
   display: block;
-  
 }
 
 #produto h1 {
@@ -267,6 +247,5 @@ margin: 20px;
   color: #444;
   font-size: 20px;
   padding: 10px;
-
 }
 
