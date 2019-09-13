@@ -6,7 +6,6 @@ padding: 0;
 html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.7em;
-  background: url('../Imagens/textura_cinza.jpg');
 }
 
 a {
@@ -23,7 +22,7 @@ p {
 }
 
 #navbar {
-  background-color: rgba(146, 173, 173, 0.306);
+  background-color: rgba(46, 56, 56, 0.306);
   overflow: auto;
 }
 
@@ -55,10 +54,18 @@ p {
   color: rgb(109, 116, 115);
 }
 
+#showcase {
+  background: url('../Imagens/textura_cinza.jpg');
+  height: 600px;
+  width: 100%;
+}
+
 #about {
+  height: 600px;
   float: left;
   color: rgb(104, 115, 116);
   padding: 20px;
+  padding-top: 70px;
   width: 50%;
 }
 
@@ -78,9 +85,56 @@ p {
   width: 40%;
   padding: 20px;
   color: rgb(104, 115, 116);
+  text-align: center justify;
 }
 
 #FSD h2 {
   font-size: 30px;
   padding-top: 40px;
 }
+
+#portfolio {
+  float: right;
+  text-align: center justify;
+}
+
+#portfolio h2 {
+  padding-right: 210px;
+  padding-top: 20px;
+  color:rgb(104, 115, 116);
+  font-size: 27px;
+}
+
+#portfolio a img {
+  height: 100px;
+  width: 150px;
+  padding-top: 30px;
+  border-radius: 3px;
+}
+
+#portfolio a img:active {
+  color: #000;
+}
+
+#medias {
+  font-size: 30px;
+  height: 100px;
+  background: rgb(53, 59, 56);
+  }
+
+.fa {
+  color: rgb(102, 116, 110);
+  width: 50px;
+  display: block;
+  float: right;
+  padding: 20px;
+}
+
+#footer {
+  text-align: center;
+  background-color: rgba(46, 61, 61, 0.53);
+  color: rgb(62, 71, 71);
+  padding: 10px;
+}
+
+ 
