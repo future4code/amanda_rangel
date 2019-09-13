@@ -1,0 +1,86 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7em;
+  background: url('../Imagens/textura_cinza.jpg');
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  padding-bottom: 20px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+#navbar {
+  background-color: rgba(146, 173, 173, 0.306);
+  overflow: auto;
+}
+
+#navbar ul {
+  list-style: none;
+  float: right;
+}
+
+#navbar ul li {
+  float: left;
+}
+
+#navbar ul li a {
+  color:white;
+  padding: 20px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+}
+
+.logo img{
+  float: left;
+  height: 40px;
+  padding: 10px;
+}
+
+#navbar ul li a:hover {
+  background: rgba(134, 160, 157, 0.51);
+  color: rgb(109, 116, 115);
+}
+
+#about {
+  float: left;
+  color: rgb(104, 115, 116);
+  padding: 20px;
+  width: 50%;
+}
+
+#about h1 {
+  padding-top: 200px;
+}
+
+#about p {
+  display: block;
+  height: 400px;
+  width: 90%;
+  text-align: justify; 
+}
+
+#FSD {
+  float: right;
+  width: 40%;
+  padding: 20px;
+  color: rgb(104, 115, 116);
+}
+
+#FSD h2 {
+  font-size: 30px;
+  padding-top: 40px;
+}
