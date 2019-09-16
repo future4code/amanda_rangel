@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#navbar {
+  display: flex;
+  background-color: lightgrey;
+  height: 70px;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  justify-content: space-between;
+}
+
+.logo {
+  height:50px;
+  margin-left: 10px;
+}
+
+.form_input {
+  width: 300px;
+  padding: 5px;
+}
+
+#new_post {
+  flex-basis: 100px;
+}
+
+#showcase {
+  display: flex;
+  
+}
+
+#showcase ul {
+  list-style: none;
+}
+
+.top_list {
+list-style: none;
+}
+
+.top_list li {
+  
+}
+
+
+
+
+
