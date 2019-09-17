@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#top-bar {
+  background: red;
+  height: 80px;
+  margin: 10px;
+  margin-top: 0;
+}
+
+#lists ul {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 10px;
+  width: 33vw;
+  height: 100px;
+}
+
+.list-purple {
+  background: purple;
+  
+}
+
+.list-yellow {
+  background: yellow;
+
+}
+
+.list-green {
+  background: green;
+}
+
+.list-black {
+  background: black;
+  color: white;
+  width: 50vw;
+  height: 200px;
+}
+
+.list-white {
+  background: rgb(141, 128, 128);
+}
+
+#side_menu ul {
+  /* display: flex; */
+}
+
+#side_menu ul li {
+  background: lightgrey;
+}
+
+
