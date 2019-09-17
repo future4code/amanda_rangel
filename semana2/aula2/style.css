@@ -9,7 +9,6 @@ body {
 
 #side-menu {
   background: lightgrey;
-  justify-content: flex-start;
   height: 100%;
   width: 20vw;
 }
@@ -27,8 +26,8 @@ body {
 #right-section {
   width: 80vw;
   height: 100vw;
-  flex-wrap: wrap;
 }
+
 #top-bar {
   background: red;
   height: 80px;
@@ -40,13 +39,6 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-}
-
-#lists ul .list-purple,
-#lists ul .list-yellow,
-#lists ul .list-green {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 #lists li {
@@ -88,5 +80,6 @@ body {
   height: 100px;
 }
 
+@media (max-width: )
 
 
