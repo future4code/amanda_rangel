@@ -9,7 +9,7 @@ body {
 
 #side-menu {
   background: lightgrey;
-  height: 100%;
+  height: 100vw;
   width: 20vw;
 }
 
@@ -80,6 +80,78 @@ body {
   height: 100px;
 }
 
-@media (max-width: )
+@media (max-width: 500px) {
+  body,
+  #lists ul,
+  #lists li {
+    display: block;
+  }
+
+  #side-menu {
+    display: none;
+  }
+
+  #lists li,
+  #top-bar {
+    width: 100vw;
+    height: 100px;
+  }
+}
+
+@media (min-width: 505px) and (max-width: 666px) {
+  #side-menu {
+    display: none;
+  }
+
+  #right-section {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  #lists ul {
+    flex-wrap: wrap;
+  }
+
+  .list-purple,
+  .list-yellow,
+  .list-black,
+  .list-white {
+    width: 46vw;
+  }
+
+  .list-green {
+    width: 96vw;
+  }
+
+  #fourth-list :last-child {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 666px) and (max-width: 768px){
+  
+  #side-menu {
+    height: 100vw;;
+  }
+
+  #lists ul {
+    flex-wrap: wrap;
+  }
+
+  .list-purple,
+  .list-yellow,
+  .list-black,
+  .list-white {
+    width: 37vw;
+  }
+
+  .list-green {
+    width: 80vw;
+  }
+
+  #fourth-list :last-child {
+    width: 80vw;
+  }
+}
 
 
