@@ -49,32 +49,32 @@ body {
   margin: 10px;
 }
 
-.list-purple {
+.list-item-purple {
   background: purple;
   width: 25vw;
   height: 100px;
 }
 
-.list-yellow {
+.list-item-yellow {
   background: yellow;
   width: 25vw;
   height: 100px;
 }
 
-.list-green {
+.list-item-green {
   background: green;
   width: 25vw;
   height: 100px;
 }
 
-.list-black {
+.list-item-black {
   background: black;
   color: white;
   width: 40vw;
   height: 300px;
 }
 
-.list-white {
+.list-item-white {
   background: rgb(141, 128, 128);
   width: 25vw;
   height: 100px;
@@ -105,25 +105,25 @@ body {
 
   #right-section {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
   }
 
   #lists ul {
     flex-wrap: wrap;
   }
 
-  .list-purple,
-  .list-yellow,
-  .list-black,
-  .list-white {
+  .list-item-purple,
+  .list-item-yellow,
+  .list-item-black,
+  .list-item-white {
     width: 46vw;
   }
 
-  .list-green {
+  .list-item-green {
     width: 96vw;
   }
 
-  #fourth-list :last-child {
+  #fourth-list:last-child {
     width: 80vw;
   }
 }
@@ -131,25 +131,25 @@ body {
 @media (min-width: 666px) and (max-width: 768px){
   
   #side-menu {
-    height: 100vw;;
+    height: 100vh;
   }
 
   #lists ul {
     flex-wrap: wrap;
   }
 
-  .list-purple,
-  .list-yellow,
-  .list-black,
-  .list-white {
+  .list-item-purple,
+  .list-item-yellow,
+  .list-item-black,
+  .list-item-white {
     width: 37vw;
   }
 
-  .list-green {
+  .list-item-green {
     width: 80vw;
   }
 
-  #fourth-list :last-child {
+  #fourth-list:last-child {
     width: 80vw;
   }
 }
