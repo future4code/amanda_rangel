@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+} 
+
+#side-menu {
+  background: lightgrey;
+  height: 100vw;
+  width: 20vw;
+}
+
+#side-menu h1{
+  background: lightgrey;
+  font-size: 12px;
+}  
+
+#side-menu ul li {
+  background: lightgrey;
+  padding: 5px;
+} 
+
+#right-section {
+  width: 80vw;
+  height: 100vw;
+}
+
+#top-bar {
+  background: red;
+  height: 80px;
+  margin: 10px;
+  margin-top: 0;
+}
+
+#lists ul {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#lists li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 10px;
+}
+
+.list-item-purple {
+  background: purple;
+  width: 25vw;
+  height: 100px;
+}
+
+.list-item-yellow {
+  background: yellow;
+  width: 25vw;
+  height: 100px;
+}
+
+.list-item-green {
+  background: green;
+  width: 25vw;
+  height: 100px;
+}
+
+.list-item-black {
+  background: black;
+  color: white;
+  width: 40vw;
+  height: 300px;
+}
+
+.list-item-white {
+  background: rgb(141, 128, 128);
+  width: 25vw;
+  height: 100px;
+}
+
+@media (max-width: 500px) {
+  body,
+  #lists ul,
+  #lists li {
+    display: block;
+  }
+
+  #side-menu {
+    display: none;
+  }
+
+  #lists li,
+  #top-bar {
+    width: 100vw;
+    height: 100px;
+  }
+}
+
+@media (min-width: 505px) and (max-width: 666px) {
+  #side-menu {
+    display: none;
+  }
+
+  #right-section {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #lists ul {
+    flex-wrap: wrap;
+  }
+
+  .list-item-purple,
+  .list-item-yellow,
+  .list-item-black,
+  .list-item-white {
+    width: 46vw;
+  }
+
+  .list-item-green {
+    width: 96vw;
+  }
+
+  #fourth-list:last-child {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 666px) and (max-width: 768px){
+  
+  #side-menu {
+    height: 100vh;
+  }
+
+  #lists ul {
+    flex-wrap: wrap;
+  }
+
+  .list-item-purple,
+  .list-item-yellow,
+  .list-item-black,
+  .list-item-white {
+    width: 37vw;
+  }
+
+  .list-item-green {
+    width: 80vw;
+  }
+
+  #fourth-list:last-child {
+    width: 80vw;
+  }
+}
+
+
