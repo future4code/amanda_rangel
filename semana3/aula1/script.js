@@ -1,11 +1,13 @@
 function createTask(){
   let inputValue = document.querySelector("#task").value;
   
-  let weekDay = document.querySelector("#weekDay").value;
+  let selectedWeekDay = document.querySelector("#weekDay").value;
 
-  let taskList = document.querySelector("#" + weekDay + " .task-items");
+  let taskList = document.querySelector("#" + selectedWeekDay + " .task-items");
   
   taskList.innerHTML += "<li>" + inputValue + "</li>";
+
+  // console.log(weekDay);
 
 }
 
