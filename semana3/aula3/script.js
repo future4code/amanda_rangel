@@ -29,11 +29,12 @@ function aoClicarEmPostar() {
   const limparConteudo = document.getElementById("conteudo").value = "";
 
   const postagem = document.getElementById("area-post");
+  
+  postagem.innerHTML = "";
 
   for (let post of listaDePost) {
     postagem.innerHTML += '<div>' + post.criarNovoPost() + '</div>';
   }
-  
 }
 
 
