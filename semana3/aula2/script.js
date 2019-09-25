@@ -12,25 +12,39 @@ function salvaItem(chave, item) {
   }
 }
 
-function adicionarAluno() {
+const listaDeInscritos = buscaItem("aluno");
+
+function cadastrar() {
+  nome = document.getElementById("name")
+  idade = document.getElementById("age") 
+  email = document.getElementById("email")
+
+
+// console.log(nome);
+// console.log(idade);
+// console.log(email);
+
+
   const aluno = {
     nome: document.getElementById("name").value,
     idade: document.getElementById("age").value,
     email: document.getElementById("email").value
-  } 
+  }
 
-  let limparInput= document.querySelector(".form").reset();
-
-  console.log(aluno);
-
-  salvaItem("salvarAluno", aluno);
-
-  const buscarDadosAlunos = buscaItem("salvarAluno");
-  console.log(buscarDadosAlunos);
-
-  const alunoInscrito = ["buscarDadosAlunos"];
-
+  listaDeInscritos.push(aluno);
+  
+  // salvaItem("salvarAluno", aluno);
+  
+  salvaItem("listaDeInscritos", listaDeInscritos);
 }
+
+  // console.log(aluno);
+
+  
+
+ 
+  
+
 
 
 

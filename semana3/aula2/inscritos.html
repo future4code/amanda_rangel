@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="script.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -13,4 +12,27 @@
   </div>
   <a href="index.html"><button id="get-back">Voltar</button></a>
 </body>
+
+<script>
+
+  const listaDeInscritos = buscaItem("aluno");
+
+  const container = document.querySelector('#container').value;
+  
+  for(let aluno of listaDeInscritos) {
+    container.innerHTML += '<div>' +
+                              '<p> Nome: ' + aluno.nome + '</p>' +
+                              '<p> Idade: ' + aluno.idade + '</p>' +  
+                              '<p> Email: ' + aluno.email + '</p>' +
+                           '</div>'
+  }
+
+  function buscaItem(chave) {
+    const valor = window.localStorage.getItem(chave);
+    if (valor) {
+      return JSON.parse(valor);
+    }
+    return [];
+  }
+</script>
 </html>
