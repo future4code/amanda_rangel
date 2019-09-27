@@ -4,47 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
 <body>
   <h1>Controlador de Despesas</h1>
-  <section class="cadastrar-despesa">
-    <h2>Cadastrar despesa</h2>
-    <form action="" class="formulario-cadastro">
-      <label>Valor</label>
-      <input type="number" id="valor">
-      <label>Tipo</label>
-      <select id="tipo-despesa-cadastro">
-        <option value="casa">Casa</option>
-        <option value="transporte">Transporte</option>
-        <option value="alimentação">Alimentação</option>
-      </select>
-      <label>Descrição</label>
-      <input type="text" id="descricao">
-    </form> 
-    <button onclick="criaDespesa()" id="btn-cadastrar">Cadastrar</button>
-  </section>
-  <section class="despesas-detalhadas">
-    <h2>Despesas Detalhadas</h2>
-    <form action="" class="formulario-filtro" >
-      <label>Tipo</label>
-      <select id="tipo-despesa-detalhada">
-        <option value="casa">Casa</option>
-        <option value="transporte">Transporte</option>
-        <option value="alimentação">Alimentação</option>
-      </select>
-      <label>Valor Mínimo</label>
-      <input type="number" id="valor-min">
-      <label>Valor Máximo</label>
-      <input type="number" id="valor-max">
-    </form>
-    <button id="btn-filtrar">Filtrar</button>
-    <button id="btn-limpar-filtro">Limpar Filtros</button>
-  </section>
-  <section class="">
-    <h2>Extrato</h2>
-      <p>Valor Total:</p>
-  </section>
+  <div class="container">
+    <section class="cadastrar-despesa">
+      <h2>Cadastrar despesa</h2>
+      <form action="" class="formulario-cadastro">
+        <label>Valor</label>
+        <input type="number" id="valor">
+        <label>Tipo</label>
+        <select id="tipo-despesa-cadastro">
+          <option value="casa">Casa</option>
+          <option value="transporte">Transporte</option>
+          <option value="alimentação">Alimentação</option>
+        </select>
+        <label>Descrição</label>
+        <input type="text" id="descricao">
+      </form> 
+      <button onclick="criaDespesa()" id="btn-cadastrar">Cadastrar</button>
+    </section>
+    <section class="despesas-detalhadas">
+      <h2>Despesas Detalhadas</h2>
+      <form action="" class="formulario-filtro" >
+        <label>Tipo</label>
+        <select id="tipo-despesa-detalhada">
+          <option value="casa">Casa</option>
+          <option value="transporte">Transporte</option>
+          <option value="alimentação">Alimentação</option>
+        </select>
+        <label>Valor Mínimo</label>
+        <input type="number" id="valor-min">
+        <label>Valor Máximo</label>
+        <input type="number" id="valor-max">
+      </form>
+      <button onclick="aoClicarEmFiltrar()" id="btn-filtrar">Filtrar</button>
+      <button id="btn-limpar-filtro">Limpar Filtros</button>
+      <ul id="area-despesas">
+
+      </ul>
+    </section>
+    <section class="">
+      <h2>Extrato</h2>
+        <p>Valor Total:</p>
+    </section>
+  </div>  
   <script src="script.js"></script>
 </body>
 </html>
