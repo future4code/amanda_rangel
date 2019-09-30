@@ -110,6 +110,7 @@ form {
   margin-right: 20px;
 }
 
+
 #left-menu_post-section {
   display: flex;
   flex-grow: 1;
@@ -117,10 +118,15 @@ form {
   min-height: 80vh;
 }
 
+#left-menu ul li img {
+  width: 2vw;
+  height: 4vh;
+}
+
 #left-menu {
-  min-width: 10vw;
+  display: flex;
   min-height: 80vh;
-  padding-top: 10px;
+  padding-top: 20px;
   /* overflow-y: scroll; */
   /* overflow-x: hidden; */
 }
@@ -130,7 +136,11 @@ form {
 }
 
 #left-menu ul li {
-  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.list-names li {
+  padding: 9px;
 }
 
 #post-section {

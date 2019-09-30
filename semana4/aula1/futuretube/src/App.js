@@ -13,7 +13,13 @@ import video_solid from './imagens/video_solid.png';
 import th_solid from './imagens/th_solid.png';
 import bell_icon from './imagens/bell_icon.png';
 import youtube_icon from './imagens/youtube_icon.png';
-import search_icon from './imagens/search_icon.png'
+import search_icon from './imagens/search_icon.png';
+import home_icon from './imagens/home_icon.png';
+import history_icon from './imagens/history_icon.png';
+import folder_icon from './imagens/folder_icon.png';
+import fire_icon from './imagens/fire_icon.png';
+import youtube_square_icon from './imagens/youtube_square_icon.png';
+
 
 function App() {
   return (
@@ -42,11 +48,17 @@ function App() {
       </header>
       <section id="left-menu_post-section">
         <aside id="left-menu">
-          <ul>
+        <ul className="list-icons">
+            <li><img src={home_icon} alt=""/> </li>
+            <li><img src={fire_icon} alt=""/></li>
+            <li><img src={youtube_square_icon} alt=""/></li>
+            <li><img src={folder_icon} alt=""/></li>
+            <li><img src={history_icon} alt=""/></li>
+          </ul>
+          <ul className="list-names">
             <li>Início</li>
             <li>Em alta</li>
             <li>Inscrições</li>
-            <li>Originais</li>
             <hr/>
             <li>Biblioteca</li>
             <li>Histórico</li>
