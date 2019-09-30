@@ -18,12 +18,6 @@ a {
   text-decoration: none;
 }
 
-li:hover,
-li a:hover {
-  color: white;
-  background:  rgba(255, 102, 0, 0.686);
-}
-
 li {
   list-style: none;
   font-family: sans-serif;
@@ -110,7 +104,6 @@ form {
   margin-right: 20px;
 }
 
-
 #left-menu_post-section {
   display: flex;
   flex-grow: 1;
@@ -136,12 +129,19 @@ form {
 }
 
 #left-menu ul li {
-  padding-bottom: 20px;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.list-names li:hover {
+    color: white;
+    background:  rgba(255, 102, 0, 0.686);
 }
 
 .list-names li {
-  padding: 9px;
-}
+  margin: 9px 0;
+  padding-left: 10px;
+} 
 
 #post-section {
   display: grid;
