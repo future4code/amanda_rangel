@@ -9,22 +9,35 @@ import media_5 from './imagens/media_5.png';
 import media_6 from './imagens/media_6.png';  
 import media_7 from './imagens/media_7.png';  
 import media_8 from './imagens/media_8.png';  
+import video_solid from './imagens/video_solid.png';
+import th_solid from './imagens/th_solid.png';
+import bell_icon from './imagens/bell_icon.png';
+import youtube_icon from './imagens/youtube_icon.png';
+import search_icon from './imagens/search_icon.png'
 
 function App() {
   return (
     <div className="container">
       <header>
-        <div id="header-text">
-          <a href="index.html" id="logo">FutureTube</a> 
-          <h2>Media. For anyone.</h2>
+        <div id="header-logo">
+          <div>
+            <a href="#"><img src={youtube_icon} id='youtube-icon'alt=""/></a>
+          </div>
+          <div id="header-text">
+            <a href="index.html" id="logo">FutureTube</a> 
+            <h2>Media. For anyone.</h2>
+          </div>
         </div>
-        <div id="search-block">
+        
           <form action="#">
-            <input type="search" name="Busca" placeholder="Busca" id="search-placeholder"/>
+            <input type="search" name="Busca" placeholder="Procurar" id="search-placeholder"/>
+            <button id="search-btn"><img src={search_icon} alt=""/></button>
           </form>
-        </div>
-        <div>
-        <a href="#"><i class="fas fa-video"></i></a>
+        
+        <div className='right-icons'>
+        <a href="#"><img id='video-icon'src={video_solid} alt=""/></a>
+        <a href="#"><img id='menu-icon'src={th_solid} alt=""/></a>
+        <a href="#"><img id='bell-icon'src={bell_icon} alt=""/></a>
         </div>
       </header>
       <section id="left-menu_post-section">
