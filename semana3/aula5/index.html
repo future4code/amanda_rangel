@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Exercícios JS</title>
+</head>
+<body>
+  <section id="filme">
+
+  </section>
+</body>
+<script>
+
+//EXERCÍCIOS DE INTERPRETAÇÃO DE CÓDIGO
+
+// O que faz, como faz, valor impresso no console
+
+// #1
+// 1.1 => A função conversorDeMoeda converte um determinado valor em dólar para reais. 
+// 1.2 => A função aceita um parâmetro (valorEmDolar) e guarda em uma variável (cotacao) o valor da cotação do dólar que deverá ser inserido pelo usuário (através do prompt). Ao final, a função retorna uma string com o símbolo da moeda real (R$) juntamente com o valor que será resultado da seguinte operação: valorEmDolar (valor inserido como parâmetro da função) X cotacao (valor da cotação inserido pelo usuário).
+// 1.3 => O valor imprimido no console será aquele armazenado na variável meuDinheiro. No caso do exemplo, será o valor retornado pela função conversorDeMoeda no cenário em que o parâmetro recebido por ela é igual ao número 100 (ValorEmDolar = 100). O valor retornado, por sua vez, será "R$" (100 X cotacao [inserida pelo usuário]).
+
+
+// #2
+// 2.1 => A função investeDinheiro demonstra qual seria o montante resultante de um investimento, variando de acordo com o tipo de investimento escolhido. 
+// 2.2 => A função aceita dois parâmetros: tipoDeInvestimento e valor. Primeiramente, há a declaração de uma variável (valorAposInvestimento) que guardará o valor do montante que resultar de cada tipo de investimento. Em segundo lugar há uma condicional do tipo switch, que recebe aquilo que será comparado em cada um dos cases (no exemplo, o tipo de investimento). Em cada um dos casos, um valor será atribuído à variável valorAposInvestimento; valor este que será o resultado da seguinte operação: valor passado como parâmetro da função x valor de rendimento. A condicional switch, irá comparar se o parâmetro pasado na função como tipoDeInvestimento corresponde ao case. Se corresponder, executa a operação e sai do switch; caso contrário vai para o próximo case. Se o parâmetro passado não corresponder a nenhum dos cases, aparecerá um alert com a mensagem "TIPO DE INVESTIMENTO INFORMADO INCORRETO!". Ao final a função retornará o valor do montante. 
+// 2.3 => Será impresso no console: 1) o valor que será armazenado na constante novoMontante, resultado da função investeDinheiro com os parâmetros "Ações" e 150 (resultado = 165); 2) o valor que será armazenado na constante segundoMontante, resultado da função investeDinheiro com os parâmetros "Tesouro Direto", 200 (resultado = "TIPO DE INVESTIMENTO INFORMADO INCORRETO").
+
+
+// #3
+// 3.1 => O código em questão está pegando números de uma lista e separando os números pares dos ímpares. 
+// 3.2 => a variável numeros é uma array que armazena diversos números distintos. Outras duas arrays são declaradas (array1 e array2), mas estão vazias. Em seguida há um loop que itera a array numeros e verifica quais cumprem o requisito de ser par. Se cumprirem o requisito serão armazenados na array1; caso contrário serão armazenados na array2 (números ímpares).
+// Será impresso no console: 1) a string " Quantidade total de números" e o comprimento da array, isto é, a quantidade de elementos ali armazenados; 2) a quantidade de números pares; 3) a quantidade de números ímpares.
+
+
+// #4
+//4.1 O código itera sobre a array numeros e separa os números negativos dos positivos.
+//4.2 O loop for itera a array numeros (que armazena diversos números) e submete os números a duas condições: 1) se o número da array for menor que o valor da variável número1 (que tem valor = infinito positivo), essa variável passará a armazenar aquele número; 2) se o número da array for maior que o valor da variável numero2 (que tem valor = 0), essa variável passará a armazenar o valor daquele número.
+// 4.3 Ao final será impresso o valor da variável numero1 (que no caso será -10) e o valor da varável número 2 (que será o último número positivo a ser iterado: 1590).
+
+
+
+// EXERCÍCIOS DE LÓGICA DE PROGRAMAÇÃO
+
+// #1
+// Utilizando o while, o for e o for of
+
+function iteraArray() {
+
+  const listaDeFrutas = ["banana", "maçã", "manga", "melancia", "abacate"];
+
+  let i = 0;
+
+  while (i < listaDeFrutas.length){
+    console.log(listaDeFrutas[i]);
+    i++;
+  }
+
+  for (let i = 0; i < listaDeFrutas.length; i++){
+    console.log(listaDeFrutas[i]); 
+  }
+
+  for (let fruta of listaDeFrutas) {
+    console.log(listaDeFrutas); 
+  }
+}
+iteraArray();
+
+
+// #2
+
+// const booleano1 = true
+// const booleano2 = false
+// const booleano3 = !booleano2 (true)
+// const booleano4 = !booleano3 (false)
+
+// a) `booleano1 && booleano2 && !booleano4` = FALSE
+
+// b) `(booleano1 && booleano2) || !booleano3` = FALSE
+
+// c)  `(booleano2 || booleano3) && (booleano4 || booleano1)`= TRUE
+
+// d) `!(booleano2 && booleano3) || !(booleano1 && booleano3)`= TRUE
+
+// e) `!(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3)` = TRUE
+
+
+// #3
+
+// Não irá funcionar. Em primeiro lugar, é necessária a atribuição de um valor à variável constante no momento de sua criação. Em segundo lugar, como não foi atribuído um valor à const quantidadeDeNumerosPares, a expressão booleana i <= quantidadeDeNumerosPares não poderá ser verificada. Ao final, como não foi determinado que a let i fosse acrescentada de 1 a cada iteração, o loop será infinito.
+
+function imprimeNumerosPares(numeros) {
+ 
+  const n = 3;
+   let i = 0;
+  while(i <= (n + 2)) {
+    if(numeros[i] % 2 === 0) {
+      console.log(numeros[i]);
+    }
+    i++;
+  }
+}
+imprimeNumerosPares([0,1,2,3,4,5,6,7,8]);
+
+
+// #4
+
+function classificaTriangulo(a,b,c) {
+  if (a === b && b === c){
+    console.log("Equilátero");
+  } else if ((a === b && b !== c) || (a === c && c !== b) || (b === c && c !== a)) {
+      console.log ("Isóceles");
+  } else if ((a !== b && a !== c) || (b !== a && b !== c) || (c !== a && c !== b)) {
+    console.log("Escaleno");
+  } 
+}
+classificaTriangulo(1,2,3);
+
+
+// #5
+
+function comparaNumeros(num1, num2) {
+  if (num1 > num2) {
+    console.log("O maior é: ", num1);
+  } else {
+    console.log("O maior é: ", num2);
+  }
+
+  if (num1 % num2 === 0) {
+    console.log(num1, " é divisível por ", num2);
+  }else {
+    console.log(num1, " não é divisível por ", num2);
+  }
+
+  if (num2 % num1 === 0) {
+    console.log(num2, " é divisível por ", num1);
+  } else {
+    console.log(num2, " não é divisível por ", num1);
+  }
+
+  if ((num1 - num2) >= 0) {
+    console.log("A diferença entre eles é ", (num1 - num2));
+  } else if ((num2 - num1) >= 0) {
+    console.log("A diferença entre eles é ", (num2 - num1));
+  } 
+}
+comparaNumeros(60, 30);
+
+// EXERCÍCIOS DE FUNÇÕES
+
+
+// #1
+
+function arrayDeNumeros (){
+  const array = [6,5,4,8,7]
+  let arrayEmOrdem = array.sort();
+  let segundoMenor = array[1];
+  let segundoMaior = array[3];
+  console.log("O segundo maior número é: ", segundoMaior);
+  console.log("O segundo menor número é: ", segundoMenor)
+}
+arrayDeNumeros();
+
+
+// #2
+
+let hello = function(){
+  return alert("Hello, Future4!");
+}
+hello();
+
+
+
+// EXERCÍCIOS DE OBJETOS
+
+// #1 => Objetos são variáveis que podem guardar outros tipos de variáveis. Já as arrays são tipos de objetos especiais que mantêm diversas informações de forma ordenada em uma lista. A importância de ambos está na possibilidade de guardamos, dentro deles, valores de diversos tipos, facilitando o acesso e mantendo o código mais limpo.
+
+// #2
+
+function criaRetangulo(lado1, lado2) {
+  const perimetro = (2 * (lado1 + lado2));
+  const area = (lado1 * lado2)
+  const retangulo = {
+    largura: lado1,
+    altura: lado2,
+    perimetro: perimetro,
+    area: area 
+  }
+    return retangulo;
+}
+const retangulo1 = criaRetangulo(4, 5);
+console.log(retangulo1);
+
+// #3
+
+function imprimeFilmeFavorito() {
+
+  const filmeFavorito = {
+    titulo: "Perfume de Mulher",
+    ano: "1992",
+    diretor: "Martin Brest",
+    atores: "Al Pacino" + " e " + "Chris O'Donnell"
+  }  
+
+   const imprimeHtml = filme.innerHTML += "<h3>" + "Venha assistir ao filme: " + filmeFavorito.titulo +  "</h3>" + 
+                                          "<h4>" + "Lançado em: " + filmeFavorito.ano + "</h4>" + 
+                                          "<h4>" + "Dirigido por: " + filmeFavorito.diretor + "</h4>" + "<h4>" + "Estrelado por: " + filmeFavorito.atores + "</h4>"
+
+}
+imprimeFilmeFavorito();
+
+// #4
+function anonimizarPessoa() { 
+
+  const pessoaX = [{
+    nome: "Jane Doe",
+    idade: "40",
+    email: "janedoe@gmail.com",
+    endereço: "Rua dos Loucos, número 0"
+  }]
+     
+    pessoaX.forEach ((pessoa, index, array)=> {
+    pessoa.nome = "ANÔNIMO"
+    console.log(pessoaX);
+    }) 
+}
+anonimizarPessoa();
+
+
+
+// EXERCÍCIOS DE FUNÇÕES DE ARRAY
+
+
+</script>
+</html>
