@@ -1,6 +1,6 @@
 .image-button {
-  padding: 10px 0;
-}
+  padding-top: 10px;
+} 
 
 #image-button-btn {
   display: flex;
