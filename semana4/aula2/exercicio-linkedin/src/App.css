@@ -1,8 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  grid-gap: 10px;
-  padding-top: 30px;
+  grid-template-rows: 4fr 3fr 2fr;
+  grid-gap: 40px;
+  padding: 20px 0;
 }
+

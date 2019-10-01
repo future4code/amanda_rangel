@@ -10,7 +10,7 @@
   min-width: 40vw;
   justify-content: flex-start;
   align-items: center;
-  border: grey 1px solid;
+  border: rgba(128, 128, 128, 0.625) 1px solid;
   padding: 5px;
 }
 
