@@ -34,21 +34,19 @@ function App() {
             <h2>Media. For anyone.</h2>
           </div>
         </div>
-        
           <form action="#">
             <input type="search" name="Busca" placeholder="Procurar" id="search-placeholder"/>
             <button id="search-btn"><img src={search_icon} alt=""/></button>
           </form>
-        
         <div className='right-icons'>
-        <a href="#"><img id='video-icon'src={video_solid} alt=""/></a>
-        <a href="#"><img id='menu-icon'src={th_solid} alt=""/></a>
-        <a href="#"><img id='bell-icon'src={bell_icon} alt=""/></a>
+          <a href="#"><img id='video-icon'src={video_solid} alt=""/></a>
+          <a href="#"><img id='menu-icon'src={th_solid} alt=""/></a>
+          <a href="#"><img id='bell-icon'src={bell_icon} alt=""/></a>
         </div>
       </header>
       <section id="left-menu_post-section">
         <aside id="left-menu">
-        <ul className="list-icons">
+          <ul className="list-icons">
             <li><img src={home_icon} alt=""/> </li>
             <li><img src={fire_icon} alt=""/></li>
             <li><img src={youtube_square_icon} alt=""/></li>
