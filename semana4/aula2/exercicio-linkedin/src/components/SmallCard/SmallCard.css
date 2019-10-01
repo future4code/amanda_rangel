@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.small-card {
+  display: flex;
+  min-width: 40vw;
+  justify-content: flex-start;
+  align-items: center;
+  border: grey 1px solid;
+  padding: 5px;
+}
+
+#small-card-img img {
+  height: 6vh;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+#small-card-label {
+  margin-right: 10px;
+}
