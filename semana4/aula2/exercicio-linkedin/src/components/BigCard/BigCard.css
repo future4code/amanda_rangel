@@ -1,0 +1,24 @@
+.big-card {
+  display: flex;
+  align-items: center;
+  min-width: 40vw;
+  border: rgba(128, 128, 128, 0.652) solid 1px;
+  padding: 5px;
+}
+
+#big-card-img img {
+  border-radius: 50%;
+  height: 10vh;
+  width: 5vw;
+  margin: 10px;
+  margin-right: 20px;
+}
+
+#big-card-text  {
+  text-align: left;
+  width: 30vw;
+}
+
+#big-card-text h3 {
+  padding-bottom: 10px;
+}
