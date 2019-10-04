@@ -61,7 +61,11 @@ class App extends React.Component {
       commentCounter1: 0,
       commentCounter2: 0,
       commentCounter3: 0,
-      showNewPost:false,
+      newPostList:[{
+        userPic: '',
+        userName: '',
+        postImg: ''
+      }],
     }
   }
 
@@ -148,6 +152,23 @@ class App extends React.Component {
     let counterNumber3 = this.state.commentCounter3;
     this.setState({commentCounter3: counterNumber3 + 1 })
   };
+  // new post
+  createNewPost = () => {
+    let newPost = {
+      userPic: this.state.userPic,
+      userName: this.state.userName,
+      postImg: this.state.postImg
+    }
+
+    let newPostListCopy = [newPost,...this.state.newPostList]
+
+    this.setState({
+      newPostList: newPostListCopy,
+      userPic: '',
+      userName: '',
+      postImg: ''
+    })
+  }
 
     render(){
 

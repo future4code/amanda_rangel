@@ -39,9 +39,9 @@ class NewPostCard extends React.Component {
       return (
         <NewPostCardContainer>
           <NewPostCardTitle>Criar um novo Post</NewPostCardTitle>
-          <NewPostCardUserPic type={this.props.type} value={this.props.value} placeholder="Foto do Usuário" />
-          <NewPostCardUserName type={this.props.type} value={this.props.value}  placeholder="Nome do Usuário" />
-          <NewPostCardPostPic type={this.props.type} value={this.props.value}  placeholder="URL da Imagem" />
+          <NewPostCardUserPic type='text' value={this.props.userPic} placeholder="Foto do Usuário" />
+          <NewPostCardUserName type='text' value={this.props.userName}  placeholder="Nome do Usuário" />
+          <NewPostCardPostPic type='url' value={this.props.postImg}  placeholder="URL da Imagem" />
           <NewPostCardPostBtn>Enviar</NewPostCardPostBtn>
         </NewPostCardContainer>
       );
@@ -49,7 +49,6 @@ class NewPostCard extends React.Component {
 }
 
   NewPostCard.propTypes = {
-    type: PropTypes.string.isRequired,
     value: PropTypes.string
   }
   
