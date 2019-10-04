@@ -61,6 +61,7 @@ class App extends React.Component {
       commentCounter1: 0,
       commentCounter2: 0,
       commentCounter3: 0,
+      showNewPost:false,
     }
   }
 
