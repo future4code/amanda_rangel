@@ -12,6 +12,7 @@ import { TitleCard } from './components/TitleCard/TitleCard';
 import styled from 'styled-components';
 import { ImgCard } from './components/ImgCard/ImgCard';
 import NewPostCard from './components/NewPostCard/NewPostCard';
+import PostSectionCard from './components/PostSectionCard/PostSectionCard';
 
 // styled components
 const AppWrap = styled.div`
@@ -35,6 +36,7 @@ const CommentForm = styled.form`
   display: flex;
   justify-content: space-around;
 `
+
 const CommentInput = styled.input`
   width: 15vw;
   margin: 5px;
@@ -45,6 +47,30 @@ const CommentBtn = styled.button`
   margin: 5px;
   font-size: 10px;
 `
+const TitleCardNewPost = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-width: 25vw;
+`
+
+const TitleCardNewPostPic = styled.img`
+  height: 7vh;
+  width: 7vh;
+  border-radius: 50%;
+  padding: 0 10px;
+`
+const TitleCardNewPostName = styled.p`
+  font-size: 1em;
+  color: #333;
+  font-weight: bold;
+`
+
+const ImgCardNewPost = styled.img`
+  height: 30vh;
+  min-width: 25vw;
+`
 
 // class component
 class App extends React.Component {
@@ -54,18 +80,21 @@ class App extends React.Component {
       showCommentInput1: false,
       showCommentInput2: false,
       showCommentInput3: false,
+      showCommentInput4: false,
       changeImg1: false,
       changeImg2: false,
       changeImg3: false,
+      changeImg4: false,
       user1: '',
       commentCounter1: 0,
       commentCounter2: 0,
       commentCounter3: 0,
-      newPostList:[{
-        userPic: '',
-        userName: '',
-        postImg: ''
-      }],
+      commentCounter4: 0,
+      newPostList:[],
+      userPic: '',
+      userName: '',
+      postImg: ''
+    
     }
   }
 
@@ -103,6 +132,16 @@ class App extends React.Component {
     this.setState(newState3)
   
   }
+  onClickIconHeart4 = () => {
+    const showCurrentImg4 = this.state.changeImg4;
+
+    const newState4 = {
+      changeImg4: !showCurrentImg4
+    }
+
+    this.setState(newState4)
+  
+  }
 
   // comment icons
   onClickIconComment1 = () => {
@@ -135,6 +174,16 @@ class App extends React.Component {
     this.setState(newState3)
     
   }
+  onClickIconComment4 = () => {
+    const commentInput4 = this.state.showCommentInput4
+
+    const newState4 = {
+     showCommentInput4: !commentInput4
+    }
+
+    this.setState(newState4)
+    
+  }
 
   // comment counter
   incrementCount1 = (event) => {
@@ -152,12 +201,18 @@ class App extends React.Component {
     let counterNumber3 = this.state.commentCounter3;
     this.setState({commentCounter3: counterNumber3 + 1 })
   };
+  incrementCount4 = (event) => {
+    event.preventDefault();
+    let counterNumber4 = this.state.commentCounter4;
+    this.setState({commentCounter4: counterNumber4 + 1 })
+  };
+
   // new post
   createNewPost = () => {
-    let newPost = {
-      userPic: this.state.userPic,
-      userName: this.state.userName,
-      postImg: this.state.postImg
+    const newPost = {
+      picture: this.state.userPic,
+      name: this.state.userName,
+      image: this.state.postImg
     }
 
     let newPostListCopy = [newPost,...this.state.newPostList]
@@ -168,6 +223,17 @@ class App extends React.Component {
       userName: '',
       postImg: ''
     })
+  }
+
+  onChangePic = (event) => {
+    this.setState({userPic: event.target.value})
+  }
+  onChangeName = (event) => {
+    this.setState({userName: event.target.value})
+  }
+
+  onChangeImg = (event) => {
+    this.setState({postImg: event.target.value})
   }
 
     render(){
@@ -197,6 +263,13 @@ class App extends React.Component {
     let icon6 = {
       image: comment_icon
     }
+    let icon7 = {
+    image: heart_icon_grey
+    }
+
+    let icon8 = {
+      image: comment_icon
+    }
 
   // hearts counters
     let counter1 = {
@@ -210,11 +283,15 @@ class App extends React.Component {
     let counter3 = {
       counter: '0'
     }
+    let counter4 = {
+      counter: '0'
+    }
 
   // comments inputs
     let input1;
     let input2;
     let input3;
+    let input4;
     
   // users description
     let user1 = {
@@ -232,10 +309,12 @@ class App extends React.Component {
     let img3 = {
       image: media_5
     }
+    
   // comment counters
     let commentCounter1 = this.state.commentCounter1;
     let commentCounter2 = this.state.commentCounter2;
     let commentCounter3 = this.state.commentCounter3;
+    let commentCounter4 = this.state.commentCounter4;
 
 // conditions
   // hearts and hearts "counters" 
@@ -263,6 +342,14 @@ class App extends React.Component {
         counter: '1'
       }
     }
+    if(this.state.changeImg4 === true) {
+      icon7 = {
+        image: heart_icon_red
+      }
+      counter4 = {
+        counter: '1'
+      }
+    }
 
   // show-comments conditions 
     if(this.state.showCommentInput1 === true) {
@@ -274,14 +361,51 @@ class App extends React.Component {
     if(this.state.showCommentInput3 === true) {
       input3 = (<CommentForm><CommentInput type='text' placeholder='Escreva seu comentário'/><CommentBtn onClick={this.incrementCount3}>Comentar</CommentBtn></CommentForm>)
     }
+    if(this.state.showCommentInput4 === true) {
+      input4 = (<CommentForm><CommentInput type='text' placeholder='Escreva seu comentário'/><CommentBtn onClick={this.incrementCount4}>Comentar</CommentBtn></CommentForm>)
+    }
 
-// print on layout 
+  // add new post
+    const elementsList = this.state.newPostList.map((item, index) => {
+      return <AppContainer 
+      key={index} 
+      picture={item.picture} 
+      name={item.name} 
+      img={item.image}>
+        <TitleCardNewPost>
+          <TitleCardNewPostPic src={item.picture}/> 
+          <TitleCardNewPostName>{item.name}</TitleCardNewPostName>
+        </TitleCardNewPost>
+        <ImgCardNewPost src={item.image}/>
+        <AppIcons>
+          <IconsCard onClickImg={this.onClickIconHeart4} 
+          image={icon7.image} 
+          counter={counter4.counter}/>
+          <IconsCard onClickImg={this.onClickIconComment4} 
+          image={icon8.image} 
+          counter={commentCounter4}/>
+        </AppIcons>
+        {input4} 
+      </AppContainer>
+    })
+    
     return (
       <AppWrap>
         <AppContainer>
-          <NewPostCard />
+          <NewPostCard
+          picture={this.state.userPic}
+          name={this.state.userName}
+          img={this.state.userImg}
+          onChangePic={this.onChangePic}
+          onChangeName={this.onChangeName}
+          onChangeImg={this.onChangeImg}
+          onClickSend={this.createNewPost}>
+          </NewPostCard> 
         </AppContainer>
-        <AppContainer>
+        <PostSectionCard>
+          {elementsList}
+        </PostSectionCard>
+       <AppContainer>
           <TitleCard image={user1.image} name={user1.name} />
           <ImgCard image={img1.image}/>
           <AppIcons>
