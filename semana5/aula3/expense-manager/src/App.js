@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import { Register } from './components/Register/Register';
 import { Expenses } from './components/Expenses/Expenses';
 import styled from 'styled-components';
+import FilterExpenses from './components/FilterExpenses/FilterExpenses'
 
 const AppContainer = styled.div`
-
+  display: grid;
+  justify-content: center;
+  margin-top: 20px;
 `
+
 const AppTitle = styled.h1`
-color: rgba(255, 102, 0, 0.686);;
-background:  lightgray; 
-border: grey 1px solid;
-border-bottom: none;
-padding: 0 5px;;
-margin: 0;
+  color: rgba(255, 102, 0, 0.686);
+  background:  lightgray; 
+  border: grey 1px solid;
+  border-bottom: none;
+  margin: 0;
+  width: 50vw;
+  padding: 0 20px;
+`
+const ExpensesContainer = styled.div `
+  
 `
 
 class App extends Component {
@@ -27,6 +35,10 @@ class App extends Component {
       description: "",
       isRegisterVisible: true,
       isExpensesVisible: false,
+      filters: {
+        minValue: null,
+        maxValue: null,
+      },
     };
   }
 
@@ -47,8 +59,32 @@ class App extends Component {
       isRegisterVisible: !this.state.isRegisterVisible,
     })
   }
+
+   updateFilterValue = (newFilterValue) => {
+    this.setState({
+      filtros: {
+        ...this.state.filters,
+        ...newFilterValue,
+      },
+    })
+  }
+
+  filterValues() {
+    const {expensesList, filters} = this.state
+    
+    let filterValues = expensesList.filter((expensesList) => {
+        return expensesList.amount <(filters.maxValue || Infinity)})
+      .filter((expensesList) => {
+        return expensesList.amount > (filters.minValue || 0)
+      })
+      
+    return filterValues  
+  }
+
+
  
   render() {
+      
     return (
       <AppContainer>
         <AppTitle>Budget4</AppTitle>
@@ -61,13 +97,17 @@ class App extends Component {
       )}
       
        {this.state.isExpensesVisible && (
-        <Expenses 
-          toggleRegisterVisibility={this.toggleRegisterVisibility}
-          toggleExpensesVisibility={this.toggleExpensesVisibility}
-          expensesList={this.state.expensesList}>
-        </Expenses>
+        <ExpensesContainer>
+          <FilterExpenses
+          onFilterChange={this.updateFilterValue}>
+          </FilterExpenses>
+          <Expenses 
+            toggleRegisterVisibility={this.toggleRegisterVisibility}
+            toggleExpensesVisibility={this.toggleExpensesVisibility}
+            expensesList={this.state.expensesList}>
+          </Expenses>
+        </ExpensesContainer>
        )}
-       
       </AppContainer>
     );
   }

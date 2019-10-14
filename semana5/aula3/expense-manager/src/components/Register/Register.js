@@ -6,10 +6,10 @@ const RegisterContainer = styled.div`
   background:  rgba(255, 102, 0, 0.686); 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #333;
-  height: 60vh;
-  min-width: 40vw;
+  min-height: 60vh;
+  width: 50vw;
   border: 1px gray solid;
-  padding: 10px;
+  padding: 20px;
 `
 
 const RegisterTitle = styled.h2`
@@ -35,7 +35,7 @@ const RegisterInputAmount = styled.input`
 
 
 const RegisterTypeSelector = styled.select`
-  min-width: 15vw;
+  min-width: 30vw;
   background:rgba(255, 100, 0, 0.000); 
   color: #333;
 `
