@@ -35,7 +35,7 @@ const RegisterInputAmount = styled.input`
 
 
 const RegisterTypeSelector = styled.select`
-  min-width: 30vw;
+  min-width: 15vw;
   background:rgba(255, 100, 0, 0.000); 
   color: #333;
 `
