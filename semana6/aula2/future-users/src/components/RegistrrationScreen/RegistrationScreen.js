@@ -1,28 +1,48 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+import { async } from 'q'
 
 const RegistrationScreenContainer = styled.div`
   border: 1px gray solid;
   display: grid;
   grid-gap: 20px;
   padding: 10px;
+  padding-bottom: 20px;
   font-family: sans-serif;
   color: #333;
+  width: 70vw;
 `
+
+const RegistrationTitle = styled.h2`
+  text-align: center;
+`
+
 const RegistrationForm = styled.div`
   display: flex;
+  justify-content: center;
 `
 
 const RegistrationLabel = styled.label`
   margin-right: 10px;
+
 `
-const RegistrationInput = styled.input``
-const RegistrationBtn = styled.div``
+
+const RegistrationInput = styled.input`
+
+`
+
+const RegistrationBtn = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 const SaveBtn = styled.button`
   margin-right: 10px;
   font-family: sans-serif;
   color: #333;
 `
+
 const RegisteredListBtn = styled.button`
   font-family: sans-serif;
   color: #333;
@@ -40,19 +60,27 @@ export default class RegistrationScreen extends Component {
   onChangeUserName = (event) => {
     this.setState({userNameValue: event.target.value})
   }
+
   onChangeUserEmail = (event) => {
     this.setState({userEmailValue: event.target.value})
   }
 
-  onClickSaveBtn = () => {
+  onClickSaveBtn = async () => {
 
     const newUser = {
       name: this.state.userNameValue,
       email: this.state.userEmailValue
     }
+    await axios.post(
+      "https://us-central1-future4-users.cloudfunctions.net/api/users/createUser", newUser,
+      {
+        headers:{
+          "api-token": "7ca5e243937cc100696e27893afc7777"
+        }
+      }
+    )
+      window.alert("Usuário salvo com sucesso!")  
     
-    this.props.addUser(newUser);
-
   }
 
   onClickRegisteredListBtn = () => {
@@ -61,10 +89,10 @@ export default class RegistrationScreen extends Component {
   }
 
 
-
   render () {
     return (
       <RegistrationScreenContainer>
+        <RegistrationTitle>Cadastro</RegistrationTitle>
         <RegistrationForm>
           <RegistrationLabel>Nome: </RegistrationLabel>
           <RegistrationInput type="text" placeholder="Nome do Usuário" value={this.state.userNamevalue} onChange={this.onChangeUserName} 
