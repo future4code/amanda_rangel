@@ -6,13 +6,13 @@ import pikachu from "/home/amanda/Desktop/ProjetosF4/amanda_rangel/semana6/aula4
 import header from "/home/amanda/Desktop/ProjetosF4/amanda_rangel/semana6/aula4/api-aula-browsers-servers/src/components/imagens/header.png"
 
 const PokeContainer = styled.div`
- font-family: sans-serif;
- color: #333;
- width: 40vw;
- height: 60vh;
- margin: auto;
- background-color: lightblue;
- display: grid;
+  font-family: sans-serif;
+  color: #333;
+  width: 40vw;
+  height: 60vh;
+  margin: auto;
+  background-color: lightblue;
+  display: grid;
 `
 
 const PokeImg = styled.img`
@@ -102,7 +102,7 @@ class PokemonSelection extends React.Component {
     const selectedPokeName = this.state.currentSelectedPokemon
     const pokeColor = await axios
       .get(`https://pokeapi.co/api/v2/pokemon-species/${selectedPokeName}`)
-    this.setState({ currentSelectedPokemonColor: Object.values(pokeColor.data.color) })
+    this.setState({ currentSelectedPokemonColor: pokeColor.data.color })
 
   }
 
@@ -145,15 +145,11 @@ class PokemonSelection extends React.Component {
               <PokeColorBtn onClick={this.onclickBtn}>Clique aqui!</PokeColorBtn>
             </div>
         </PokeWrap>
-        {this.state.currentSelectedPokemonColor.map((color, i) => {
-          return (
-            <PokeColorResult key={i}> 
+          <PokeColorResult key={this.state.currentSelectedPokemonColor.name}> 
             <p>A cor do Pokémon é: </p> 
-            {this.state.currentSelectedPokemonColor[0]}
-            </PokeColorResult>
-          )
-        })}
-      </PokeContainer>
+            {this.state.currentSelectedPokemonColor.name}
+          </PokeColorResult>
+        </PokeContainer>
     )
 
   }
