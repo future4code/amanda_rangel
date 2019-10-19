@@ -8,9 +8,7 @@ const OpenningScreenContainer = styled.div`
   margin:0;
   // border: 1px gray solid;
   // border-top: none;
-  display: grid;
-  align-content: center;
-  justify-items: center;
+
 `
 const UserImg = styled.img``
 const UserName = styled.h3``
