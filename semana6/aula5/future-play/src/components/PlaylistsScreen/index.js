@@ -38,7 +38,8 @@ export class PlaylistsScreen extends React.Component {
     this.state = {
       playlists: [],
       playlistName: '',
-      currentPage: 'playlistsScreen'
+      isMusicsScreenVisible: false
+      
     }
   }
 
@@ -81,9 +82,7 @@ export class PlaylistsScreen extends React.Component {
     this.getAllPlaylists();
   }
 
-  componentDidUpdate(){
-    this.getAllPlaylists();
-  }
+  
   
 
   onClickDeleteBtn = async (id) => {
@@ -96,25 +95,38 @@ export class PlaylistsScreen extends React.Component {
       })
   }
 
-  
+  toggleMusicsScreenVisibility = () => {
+    this.setState({
+      isMusicsScreenVisible: !this.state.isMusicsScreenVisible,
+    })
+  }
+
+    
   render(){
     return(
       <PlaylistsScreenContainer>
         <PlaylistForm>
           <PlaylistLabel>Nova playlist: </PlaylistLabel>
-          <PlaylistInput value={ this.state.playlistsName} onChange={this.onChangeInputValue}/>
+          <PlaylistInput 
+          type='text' 
+          value={ this.state.playlistsName} 
+          onChange={this.onChangeInputValue}
+          />
           <PlaylistBtn onClick={ this.onClickBtn}>Criar Playlist</PlaylistBtn>
         </PlaylistForm>
-        {this.state.playlists.map((playlist) => {
+        {this.state.playlists.map((playlist, i) => {
           return (
             <AllPlaylists>
-              <DetailsBtn>Details</DetailsBtn>
+              <DetailsBtn onClick={this.toggleMusicsScreenVisibility}>Details</DetailsBtn>
               <li>{playlist.name}</li>
               <DeleteBtn onClick = { () => {this.onClickDeleteBtn(playlist.id)} }>X</DeleteBtn>
             </AllPlaylists>
           )
         })}
-        <MusicsScreen />
+        {this.state.isMusicsScreenVisible && (
+          <MusicsScreen playlists={this.state.playlists.id}/>
+        )}
+        
       </PlaylistsScreenContainer>
     )
   }
