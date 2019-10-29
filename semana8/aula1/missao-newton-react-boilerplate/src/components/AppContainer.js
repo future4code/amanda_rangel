@@ -1,13 +1,13 @@
 import React from 'react'
-import TaskInput from '../TaskInput'
-import ListItems from '../ListItems'
-import Filters from '../Filters'
+import { TaskInput } from './TaskInput'
+import { ListItems } from './ListItems'
+
 
 export class AppContainer extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			taskList: []
+			taskList: [],
 		}
 	}
 
@@ -17,7 +17,7 @@ export class AppContainer extends React.Component {
 			<div>
 				<TaskInput />
 				<ListItems taskList={this.state.taskList}/>
-				<Filters />
+				
 			</div>
 		)
 	}
