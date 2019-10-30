@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { TasksInput } from './taskList/TasksInput'
-import { TaskListItem } from './taskList/TaskListItem'
-import { Footer } from './taskList/Footer'
+import React from 'react';
+import styled from 'styled-components';
+import { TasksInput } from './taskList/TasksInput';
+import TaskListContainer from './taskList/TaskListContainer';
+import { Footer } from './taskList/Footer';
 import Card from '@material-ui/core/Card';
 import 'typeface-roboto';
 
@@ -25,7 +25,6 @@ const Title = styled.h1`
 
 `
 
-
 export class AppContainer extends React.Component {
 	constructor(props) {
 		super(props)
@@ -37,7 +36,7 @@ export class AppContainer extends React.Component {
 				<Title>4Task</Title>
 				<CardStyled>
 					<TasksInput />
-					<TaskListItem /> 
+					<TaskListContainer /> 
 					<Footer />
 				</CardStyled>
 			</div>

@@ -18,6 +18,7 @@ const ListStyled = styled(List)`
 export class TaskListItem extends React.Component {
 	constructor () {
 		super()
+	
 	}
 
 	render() {
@@ -26,8 +27,8 @@ export class TaskListItem extends React.Component {
 				<ListStyled>
 				<Divider />
           <ListItem>
-            <Checkbox />
-            <ListItemText />
+						<Checkbox />
+            <ListItemText>{this.props.task.text}</ListItemText>
             <ListItemSecondaryAction>
               <IconButton >
                 <DeleteIcon />
