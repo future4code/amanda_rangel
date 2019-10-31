@@ -1,13 +1,12 @@
 import {ADD_TASK, DELETE_TASK, CHECK_TASK, CHECK_ALL_TASKS, DELETE_ALL_TASKS} from '../constants/actionTypes'
 
-let taskListId = 0;
 
 export const addTask = (text) => {
 	return {
 		type: ADD_TASK,
 		payload : {
 			text: text,
-			id: taskListId++,
+			id: Date.now(),
 			checked: false
 		}
 	}

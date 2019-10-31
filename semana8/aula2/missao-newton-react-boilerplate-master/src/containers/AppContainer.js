@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TasksInput } from './taskList/TasksInput';
+import TasksInput from './taskList/TasksInput';
 import TaskListContainer from './taskList/TaskListContainer';
 import { Footer } from './taskList/Footer';
 import Card from '@material-ui/core/Card';
