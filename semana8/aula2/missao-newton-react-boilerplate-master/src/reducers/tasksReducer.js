@@ -22,7 +22,7 @@ const tasksReducer = (state = initialState, action) => {
 		case CHECK_TASK:
 			const indexToEdit = state.tasks.findIndex(task => task.id === action.payload.id)
 			const newAllTasks = [...state.tasks];
-			newAllTasks(indexToEdit).done = true;
+			newAllTasks[indexToEdit].done = true;
 			return {...state, tasks: newAllTasks };
 			
 		case DELETE_TASK:
