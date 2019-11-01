@@ -17,7 +17,7 @@ class TaskListContainer extends React.Component {
 }
 const mapStateToProps = (state) => {
 	return {
-		tasks: state.tasks
+		tasks: state.tasks.tasks
 	}
 }
 

@@ -1,22 +1,27 @@
-import {ADD_TASK, DELETE_TASK, CHECK_TASK, CHECK_ALL_TASKS, DELETE_ALL_TASKS} from '../constants/actionTypes'
+import {ADD_TASK, UPDATE_TASK_TEXT, DELETE_TASK, CHECK_TASK, CHECK_ALL_TASKS, DELETE_ALL_TASKS} from '../constants/actionTypes'
 
 
-export const addTask = (text) => {
+export const addTask = (text, id) => {
 	return {
 		type: ADD_TASK,
 		payload : {
-			text: text,
 			id: Date.now(),
-			checked: false
 		}
 	}
 }
+
+export const updateTaskText = (newText) => ({
+	type: UPDATE_TASK_TEXT,
+	payload: { 
+		newText: newText,
+	}
+})
 
 export const deleteTask = (id) => {
 	return {
 		type: DELETE_TASK,
 		payload: {
-			id
+			id: id,
 		}
 	}
 }
@@ -25,7 +30,7 @@ export const checkTask = (id) => {
 	return {
 		type: CHECK_TASK,
 		payload: {
-			id,
+			id: id,
 		}
 		
 	}

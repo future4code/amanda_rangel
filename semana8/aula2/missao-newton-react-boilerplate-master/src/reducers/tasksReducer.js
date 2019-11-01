@@ -1,54 +1,40 @@
-import {ADD_TASK, DELETE_TASK, CHECK_TASK, CHECK_ALL_TASKS, DELETE_ALL_TASKS} from '../constants/actionTypes'
+import {ADD_TASK, UPDATE_TASK_TEXT, DELETE_TASK, CHECK_TASK, CHECK_ALL_TASKS, DELETE_ALL_TASKS} from '../constants/actionTypes'
 import { awaitExpression } from '@babel/types'
 
-const initialState = [
-		{
-			id: 1,
-			text: 'task1',
-			checked: false
-		},
-		{
-			id: 2,
-			text: 'task2',
-			checked: true
-		}
-]
+const initialState = {
+	tasks: [],
+	currentTaskText: '',
+} 
 
 const tasksReducer = (state = initialState, action) => {
 	console.log(action)
 	switch(action.type) {
 		case ADD_TASK:
-			const newTask = {
-				text: action.payload.text,
+			const newTask = {   	
+				text: state.currentTaskText,
 				id: action.payload.id,
-				checked: action.payload.ckecked,
-				deleted: action.payload.deleted
-			}
-			return [newTask,...state]
+				done: false
+			};
+			const newTasks = [...state.tasks, newTask];
+			return {...state, tasks: newTasks, currentTaskText: ''}
+		case UPDATE_TASK_TEXT:
+			return {...state, currentTaskText: action.payload.newText}
+		case CHECK_TASK:
+			const indexToEdit = state.tasks.findIndex(task => task.id === action.payload.id)
+			const newAllTasks = [...state.tasks];
+			newAllTasks(indexToEdit).done = true;
+			return {...state, tasks: newAllTasks };
+			
+		case DELETE_TASK:
+			const indexToRemove = state.tasks.findIndex((task) => task.id === action.payload.id)
+			const notDeletedTasks = [...state.tasks]
+			notDeletedTasks.splice(indexToRemove, 1)
+			return {...state, tasks: notDeletedTasks }		
+			
 		default:
 			return state
-		case CHECK_TASK:
-			const newState = state.map(task => {
-				if(task.id === action.payload.id) {
-					return {
-						...task, 
-						checked: !task.checked};
-				}
-				return task;
-			})
-			return newState;
-		case DELETE_TASK:
-			const taskToDelete = state.map(task => {
-				if(task.id === action.payload.id) {
-					return {
-						...task, 
-						deleted: !task.deleted};
-				}
-				return task;
-			})
-			return taskToDelete;
 	}
-		return state;
+
 }
 
 export default tasksReducer;
