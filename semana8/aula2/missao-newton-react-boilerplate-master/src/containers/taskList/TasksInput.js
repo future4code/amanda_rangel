@@ -34,12 +34,14 @@ class TasksInput extends React.Component {
 	}
 	
 	onClickBtn = () => {
-		this.props.addNewTask(id)
+		const newId = Date.now();
+		this.props.addNewTask(newId)
 	}
 
 	onEnterPress = (event) => {
 		if(event.key === 'Enter') {
-			this.props.addNewTask(id)
+			const newId = Date.now();
+			this.props.addNewTask(newId)
 		}
 	}
 
