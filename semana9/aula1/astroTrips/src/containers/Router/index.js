@@ -24,8 +24,8 @@ function Router(props) {
         <Route path={routes.applicationForm} component={ApplicationFormPage} />
         <Route path={routes.login} component={LoginPage} />
         <Route path={routes.createTrips} component={CreateTripsPage} />
-        <Route path={routes.tripsList} component={ListTripsPage} />
-        <Route path={routes.tripsDetails} component={TripDetailsPage} />
+        <Route exact path={routes.tripsList} component={ListTripsPage} />
+        <Route exact path={routes.tripsDetails} component={TripDetailsPage} />
         <Route path={routes.home} component={HomePage} />
       </Switch>
     </ConnectedRouter>

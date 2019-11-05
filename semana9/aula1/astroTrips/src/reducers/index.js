@@ -5,5 +5,5 @@ import trips from "./trips";
 export const generateReducers = history =>
   combineReducers({
     router: connectRouter(history),
-    trips: trips
+    trips,
   });

@@ -3,34 +3,38 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import styled from "styled-components";
-import { fetchTrips } from "../../actions/trips";
+import { fetchTrips, setSelectedTrip } from "../../actions/trips";
+import {routes} from '../Router'
 
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
+const ListWrapper = styled.form`
+ 
 `;
 
 class ListTripsPage extends Component {
-  constructor(props) {
-    super(props);
 
+  componentDidMount() {
+    this.props.fetchTrips();
   }
 
+  onClickDetails = (tripId) => {
+    this.props.setSelectedTrip(tripId);
+    this.props.goToTripDetails();
+  }
 
   render() {
     
     return (
-      <LoginWrapper>
-         <Button onClick={this.props.fetchTrips}>Viagens marcadas</Button>
-         <ul>
-           
-         </ul>
-      </LoginWrapper>
+      <ListWrapper>
+        {this.props.trips.map(trip => (
+          <List>
+            <ListItem>{trip.name}</ListItem>
+            <Button onClick={ () => this.onClickDetails(trip.id)}>Detalhes</Button>
+          </List>
+        ))}
+      </ListWrapper>
     );
   }
 }
@@ -43,9 +47,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    fetchTrips: () => dispatch(fetchTrips())
-  };
-  
+    fetchTrips: () => dispatch(fetchTrips()),
+    goToTripDetails: () => dispatch(push(routes.tripsDetails)),
+    setSelectedTrip: (tripId) => dispatch(setSelectedTrip(tripId))
+ };
 }
 export default connect(
   mapStateToProps,
