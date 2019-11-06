@@ -2,6 +2,7 @@ import React from "react";
 
 export const Countries =
 <React.Fragment>
+    <option value="" required></option>
     <option value="Afghanistan">Afghanistan</option>
     <option value="Åland Islands">Åland Islands</option>
     <option value="Albania">Albania</option>

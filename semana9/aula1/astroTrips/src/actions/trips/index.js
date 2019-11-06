@@ -29,3 +29,29 @@ export const getTripDetails = (tripId) => async (dispatch, getState) => {
 
   dispatch(setSelectedTrip(response.data.trip));
 };
+
+export const addCandidate = (name, profession, applicationText, age, country) => ({
+  type: "ADD_CANDIDATE",
+  payload: {
+    name,
+    profession,
+    applicationText,
+    age,
+    country,
+  }
+});
+
+export const postTripCandidate = (name, age, applicationText, profession, country, tripId) =>  async (dispatch) => {
+    const data = {
+      name:name, 
+      age:age, 
+      applicationText: applicationText, 
+      profession: profession, 
+      country: country, 
+      tripId: tripId
+    }
+    const response = await axios.post(
+      `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips/${tripId}/apply`,
+      data
+    ); 
+  };
