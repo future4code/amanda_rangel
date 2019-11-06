@@ -4,15 +4,26 @@ import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import {Countries} from "./Countries"
 
-const LoginWrapper = styled.form`
+const Form = styled.form`
   width: 100%;
   height: 100vh;
-  gap: 10px;
+  gap: 12px;
   place-content: center;
   justify-items: center;
   display: grid;
 `;
+
+const SelectStyled = styled(Select)`
+  width: 20vw;
+`
 
 class ApplicationFormPage extends Component {
   constructor(props) {
@@ -33,26 +44,46 @@ class ApplicationFormPage extends Component {
     const { name, age } = this.state;
 
     return (
-      <LoginWrapper>
+      <Form>
         <h2>Formulário de Inscrição</h2>
         <TextField
-          variant='outlined'
-          onChange={this.handleFieldChange}
+          label="Nome"
+          type="text"
           name="name"
-          type="name"
-          label="Nome Completo"
-          value={name}
+          autoComplete="name"
+          margin="normal"
+          variant="outlined"
+        />
+       <TextField
+          label="Idade"
+          type="number"
+          name=""
+          autoComplete="idade"
+          margin="normal"
+          variant="outlined"
         />
         <TextField
-          onChange={this.handleFieldChange}
-          name="age"
-          type="age"
-          label="Idade"
-          variant='outlined'
-          value={age}
+          label="Profissão"
+          type="text"
+          name=""
+          autoComplete="profissão"
+          margin="normal"
+          variant="outlined"
         />
+        <label>Selecione o país onde você mora</label>
+        <SelectStyled>
+          {Countries}
+        </SelectStyled>
+        <label>Porque você é um bom candidato?</label>
+        <TextField
+          label="Multiline"
+          multiline
+          rows="6"
+          margin="normal"
+          variant="outlined"
+      />
         <Button>Enviar</Button>
-      </LoginWrapper>
+      </Form>
     );
   }
 }
