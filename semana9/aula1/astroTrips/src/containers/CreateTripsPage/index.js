@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
+import { routes } from "../Router"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { createNewTrip } from "../../actions/trips";
 const Form = styled.form`
   width: 100%;
@@ -17,7 +20,7 @@ const Form = styled.form`
 
 const SelectStyled = styled(Select)`
   width: 20vw;
-`
+  `
 
 class CreateTripsPage extends Component {
   constructor(props) {
@@ -31,7 +34,14 @@ class CreateTripsPage extends Component {
     };
   }
 
-
+  componentDidMount() {
+    const token = window.localStorage.getItem("token");
+ 
+   if (!token) {
+     this.props.goToLogin();
+   }
+ }
+ 
   onChangeName = event => {
     this.setState({ name: event.target.value });
   };
@@ -61,7 +71,7 @@ class CreateTripsPage extends Component {
 
   
   render() {
-
+    const newDate = new Date().toISOString().split("T")[0];
     return (
       <Form onSubmit={this.handleOnSubmit}>
         <h2>Criar nova viagem</h2>
@@ -94,29 +104,38 @@ class CreateTripsPage extends Component {
         name="date"
         label="Data"
         type="date"
+        defaultValue="30-11-2019"
         InputLabelProps={{
           shrink: true,
-          
         }}
+        inputProps={{min:newDate}}
         value={this.state.date}
         onChange={this.onChangeDate}
       />
         <label>Selecione o planeta de destino</label>
-        <select
-        required
-        name="planet"
-        value={this.state.planet}
-        onChange={this.onChangePlanet}
-        >
-          <option value="">Planetas</option>
-          <option value="Mercurio">Mercurio</option>
-          <option value="Venus">Venus</option>
-          <option value="Marte">Marte</option>
-          <option value="Jupiter">Jupiter</option>
-          <option value="Saturno">Saturno</option>
-          <option value="Urano">Urano</option>
-          <option value="Netuno">Netuno</option>
-        </select>
+        <FormControl variant="outlined">
+          <Select
+          native
+          required
+          name="planet"
+          value={this.state.planet}
+          onChange={this.onChangePlanet}
+          input={
+            <OutlinedInput
+              name="planet"
+            />
+          }
+          >
+            <option value="">Planetas</option>
+            <option value="Mercurio">Mercurio</option>
+            <option value="Venus">Venus</option>
+            <option value="Marte">Marte</option>
+            <option value="Jupiter">Jupiter</option>
+            <option value="Saturno">Saturno</option>
+            <option value="Urano">Urano</option>
+            <option value="Netuno">Netuno</option>
+          </Select>
+        </FormControl>
         <label>Descrição da viagem</label>
         <TextField
           required
@@ -141,6 +160,7 @@ class CreateTripsPage extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     createNewTrip: (name, planet, date, description, durationInDays) => dispatch(createNewTrip(name, planet, date, description, durationInDays)),
+    goToLogin: () => dispatch(push(routes.login))
   }
 };
 

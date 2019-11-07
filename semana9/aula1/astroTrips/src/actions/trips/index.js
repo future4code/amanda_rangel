@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlNOMHM5NGpZNkhOU0hQdnlWazFzIiwiZW1haWwiOiJhbWFuZGFAZ21haWwuY29tIiwiaWF0IjoxNTczMTQ3MzkwfQ.C5hR8RdsqbDQOzZSySoCuMy7OVN8R8tLaM6L2qbJBp8"
+
+
 export const setTrips = (trips) => ({
   type: "SET_TRIPS",
   payload: {
@@ -9,8 +12,13 @@ export const setTrips = (trips) => ({
 
 export const fetchTrips= () => async (dispatch, getState) => {
   const response = await axios.get(
-    "https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips"
-  );
+    "https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips",
+    {
+      headers: {
+        auth: token,
+      }
+    });
+  
 
   dispatch(setTrips(response.data.trips));
 };
@@ -24,9 +32,13 @@ export const setSelectedTrip = (tripId) => ({
 
 export const getTripDetails = (tripId) => async (dispatch, getState) => {
   const response = await axios.get(
-    `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trip/${tripId}`
-  );
-
+    `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trip/${tripId}`,
+    {
+      headers: {
+        auth: token,
+      }
+    });
+  
   dispatch(setSelectedTrip(response.data.trip));
 };
 
@@ -65,6 +77,12 @@ export const createNewTrip = (name, planet, date, description,durationInDays) =>
     }
     const response = await axios.post(
       `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips`,
-      data
-    ); 
+      data,
+      {
+        headers: {
+          auth: token,
+        }
+      });
   };
+
+  

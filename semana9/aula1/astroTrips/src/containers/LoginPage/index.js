@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
+import { authenticateLogin } from "../../actions/auth"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
@@ -12,6 +13,10 @@ const LoginWrapper = styled.form`
   place-content: center;
   justify-items: center;
   display: grid;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
 `;
 
 class LoginPage extends Component {
@@ -29,8 +34,15 @@ class LoginPage extends Component {
     });
   };
 
+  onClickLogin = () => {
+    const { email, password } = this.state;
+
+    this.props.authenticateLogin(email, password);
+  };
+
   render() {
     const { email, password } = this.state;
+    const { errorMessage } = this.props;
 
     return (
       <LoginWrapper>
@@ -48,10 +60,25 @@ class LoginPage extends Component {
           label="Password"
           value={password}
         />
-        <Button>Login</Button>
+        <Button onClick={this.onClickLogin}>Login</Button>
+        <ErrorMessage>{errorMessage ? "Usuário ou Senha incorretos" : ""}</ErrorMessage>
       </LoginWrapper>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    errorMessage: state.auth.loginError
+  };
+};
 
-export default LoginPage;
+const mapDispatchToProps = dispatch => {
+  return {
+    authenticateLogin: (email, password) => dispatch(authenticateLogin(email, password))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPage);

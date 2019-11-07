@@ -7,6 +7,9 @@ import styled from "styled-components";
 import Select from '@material-ui/core/Select';
 import {Countries} from "./Countries"
 import { fetchTrips, postTripCandidate } from "../../actions/trips";
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
 const Form = styled.form`
   width: 100%;
   height: 100vh;
@@ -107,26 +110,42 @@ class ApplicationFormPage extends Component {
           onChange={this.onChangeProfession}
         />
         <label>Selecione o país onde você mora</label>
-        <select
-        required
-        name="country"
-        value={this.state.country}
-        onChange={this.onChangeCountry}
-        >
-          {Countries}
-        </select>
+        
+          <Select
+            native
+            required
+            name="country"
+            value={this.state.country}
+            onChange={this.onChangeCountry}
+            input={
+              <OutlinedInput
+                name="country"
+              />
+            }
+            >
+            {Countries}
+          </Select>
         <label>Selecione a viagem desejada</label>
-        <select
-        name="tripId"
-        id="tripId"
-        value={this.state.tripId}
-        onChange={this.onChangeTrip}
-        >
-          <option value="">Viagens</option>
-          {this.props.trips.map(trip => {
-              return <option value={trip.id}>{trip.name}</option>;
+        <FormControl variant="outlined">
+          <Select
+            native
+            required          
+            name="tripId"
+            id="tripId"
+            value={this.state.tripId}
+            onChange={this.onChangeTrip}
+            input={
+              <OutlinedInput
+                name="tripId"
+              />
+            }
+            >
+            <option value = "">Viagens</option>
+            {this.props.trips.map(trip => {
+              return <option value={trip.id}>{trip.name}</option>
             })}
-        </select>
+          </Select>
+        </FormControl>
         <label>Porque você é um bom candidato?</label>
         <TextField
           required

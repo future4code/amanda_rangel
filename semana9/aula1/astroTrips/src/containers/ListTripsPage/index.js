@@ -17,6 +17,11 @@ class ListTripsPage extends Component {
 
   componentDidMount() {
     this.props.fetchTrips();
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.goToLogin();
+    }
   }
 
   onClickDetails = (tripId) => {
@@ -49,7 +54,8 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchTrips: () => dispatch(fetchTrips()),
     goToTripDetails: () => dispatch(push(routes.tripsDetails)),
-    setSelectedTrip: (tripId) => dispatch(setSelectedTrip(tripId))
+    setSelectedTrip: (tripId) => dispatch(setSelectedTrip(tripId)),
+    goToLogin: () => dispatch(push(routes.login))
  };
 }
 export default connect(

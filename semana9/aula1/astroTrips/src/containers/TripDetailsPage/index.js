@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { routes } from "../Router"
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
@@ -20,8 +21,12 @@ class TripDetailsPage extends Component {
   }
 
  componentDidMount() {
-   console.log(this.props.tripId)
    this.props.getTripDetails(this.props.tripId);
+   const token = window.localStorage.getItem("token");
+ 
+   if (!token) {
+     this.props.goToLogin();
+  }
  }
 
   render() {
@@ -77,6 +82,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     getTripDetails: (tripId) => dispatch(getTripDetails(tripId)),
+    goToLogin: () => dispatch(push(routes.login))
  };
 }
 
