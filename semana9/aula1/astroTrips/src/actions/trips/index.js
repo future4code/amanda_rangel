@@ -55,3 +55,16 @@ export const postTripCandidate = (name, age, applicationText, profession, countr
       data
     ); 
   };
+export const createNewTrip = (name, planet, date, description,durationInDays) =>  async (dispatch) => {
+    const data = {
+      name:name,
+      planet:planet,
+      date:date,
+      description:description,
+      durationInDays:durationInDays,
+    }
+    const response = await axios.post(
+      `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips`,
+      data
+    ); 
+  };

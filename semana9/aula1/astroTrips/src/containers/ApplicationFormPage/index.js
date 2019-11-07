@@ -10,15 +10,12 @@ import { fetchTrips, postTripCandidate } from "../../actions/trips";
 const Form = styled.form`
   width: 100%;
   height: 100vh;
-  gap: 12px;
+  gap: 10px;
   place-content: center;
   justify-items: center;
   display: grid;
 `;
 
-const SelectStyled = styled(Select)`
-  width: 20vw;
-`
 
 class ApplicationFormPage extends Component {
   constructor(props) {
@@ -125,7 +122,7 @@ class ApplicationFormPage extends Component {
         value={this.state.tripId}
         onChange={this.onChangeTrip}
         >
-          <option value=""></option>
+          <option value="">Viagens</option>
           {this.props.trips.map(trip => {
               return <option value={trip.id}>{trip.name}</option>;
             })}
