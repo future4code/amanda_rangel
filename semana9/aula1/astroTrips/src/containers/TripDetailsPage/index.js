@@ -2,18 +2,54 @@ import React, { Component } from "react";
 import { routes } from "../Router"
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import TextField from "@material-ui/core/TextField";
 import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider"
+import IconButton from '@material-ui/core/IconButton';
+import DoneIcon from '@material-ui/icons/Done';
+import ClearIcon from '@material-ui/icons/Clear';
 import styled from "styled-components";
 import { getTripDetails } from "../../actions/trips";
-import { ListItem } from "@material-ui/core";
+import { ListItem, Button } from "@material-ui/core";
+
 
 const TripDetailsWrapper = styled.div`
- display: flex;
+  display: grid;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  overflow: scroll;
 `;
 
 const ListStyled = styled(List)`
+  border: 1px solid #9B9E9E;
+  height: 45vh;
+  width: 40vw;
+  color: #333;
 `
+
+const ListItemStyled = styled(ListItem)`
+  &&:hover {
+    background-color: #9B9E9E;
+    color: white;
+  }
+  display: flex;
+`
+
+const Candidates = styled.div`
+  /* display:grid; */
+`
+const Trips = styled.div`
+  display:grid;
+`
+const Title = styled.div`
+  text-align: center;
+  color: #333;
+`
+const IconButtonStyled = styled(IconButton)`
+  padding-left: 20px;
+`
+
+
 class TripDetailsPage extends Component {
   constructor(props) {
     super(props);
@@ -33,42 +69,65 @@ class TripDetailsPage extends Component {
     const tripId = this.props.tripId;
     return (
       <TripDetailsWrapper>
-        <h3>Viagens</h3>
+        <Trips>
+        <Title>
+          <h3>Viagens</h3>
+        </Title>
+        <Divider /> 
         <ListStyled>
-          <ListItem>
+          <ListItemStyled>
             Nome: {tripId.name}
-          </ListItem>
-          <ListItem>
+          </ListItemStyled>
+          <Divider />
+          <ListItemStyled>
             Planeta: {tripId.planet}
-          </ListItem>
-          <ListItem>
+          </ListItemStyled>
+          <Divider />
+          <ListItemStyled>
             Duração: {tripId.durationInDays}
-          </ListItem>
-          <ListItem>
+          </ListItemStyled>
+          <Divider />
+          <ListItemStyled>
             Descrição: {tripId.description}
-          </ListItem>
-        </ListStyled> 
-        <h3>Candidatos</h3>
+          </ListItemStyled>
+        </ListStyled>
+        </Trips>
+        <Candidates>
+        <Title>
+          <h3>Candidatos</h3>
+        </Title>
+        <Divider /> 
         {tripId.candidates !== undefined &&
           tripId.candidates.map(candidate => (
             <ListStyled>
-              <ListItem>
+              <ListItemStyled>
                 Nome: {candidate.name}
-              </ListItem>
-              <ListItem>
+                <IconButtonStyled>
+                <DoneIcon />
+              </IconButtonStyled>
+              <IconButtonStyled>
+                <ClearIcon /> 
+              </IconButtonStyled>
+              </ListItemStyled>
+              <Divider />
+              <ListItemStyled>
                 País: {candidate.country}
-              </ListItem>
-              <ListItem>
+              </ListItemStyled>
+              <Divider />
+              <ListItemStyled>
                 Texto: {candidate.applicationText}
-              </ListItem>
-              <ListItem>
+              </ListItemStyled>
+              <Divider />
+              <ListItemStyled>
                 Profissão: {candidate.profession}
-              </ListItem>
-              <ListItem>
+              </ListItemStyled>
+              <Divider />
+              <ListItemStyled>
                 Idade: {candidate.age}
-              </ListItem>
+              </ListItemStyled>
               </ListStyled>
-          ))}   
+          ))}
+        </Candidates>   
       </TripDetailsWrapper>
     );
   }

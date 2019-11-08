@@ -5,11 +5,7 @@ import { routes } from '../Router'
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import logo2 from "../../images/logo2.png"
 import discovery from "../../images/discovery.jpg"
 import astronaut from "../../images/astronaut.jpg"
@@ -18,10 +14,11 @@ import styled from "styled-components";
 const HomeWrapper = styled.div`
  height: 100vh;
  width: 100vw;
- overflow: hidden;
-`;
+ background-color: white;
+ /* overflow: hidden; */
+ /* background: #D34D02; */
+`
 const AppBarStyled = styled(AppBar)`
-
 `
 
 const ToolbarStyled = styled(Toolbar)`
@@ -30,65 +27,57 @@ const ToolbarStyled = styled(Toolbar)`
   justify-content: space-between;
   width: 100vw;
 `
+
 const Name = styled.img`
   height: 30px;
 `
 
-const HomeImg = styled.img`
+const HomeImg = styled.div`
   width: 100vw;
-  height: 50vh;
+  height: 60vh;
+  background: url(${astronaut}) left center no-repeat;
 `
+
 const ApplyButtonStyled = styled(Button)`
   && {
-    background-color: white;
-    color: #D25934;
+    background-color: #050A1B;
+    color: white;
     font-weight: bold;
     width: 20vw;
     height: 50px;
     padding: 1px;
     margin-top: 20px;
+    align-self: center;
   }   
 `
 const LoginButtonStyled = styled(Button)`
   && {
     background-color: white;
-    color: #D25934;
+    color: #6B6B6B;
     font-weight: bold;
   }   
 `
 
-const PageBody = styled.div`
+const Aside = styled.aside`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: #6B6B6B;
   display: flex;
   flex-direction: column;
-  align-items: center;
-`
-const CardStyled = styled(Card)`
-  height: 40vh;
   width: 100vw;
-  && {
-  background: #D34D02;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  }
-  padding-right: 20px;
- `
-const TypographyStyled = styled(Typography)`
-  && {
-    color: white;
-    font-size: 18px;
-    text-align: left;
-    font-family: sans-serif;
-    width: 45vw;
-  }
+  justify-content: space-between;
+  padding: 30px;
+  text-align: justify;
+  align-self: center;
+  overflow: hidden;
 `
 
-const CardMediaStyled = styled(CardMedia)`
-  && {
-    height: 150px;
-    width: 20vw;
-    border-radius: 10px;
-  }  
+const Footer = styled.div`
+  height: 40px;
+  width: 100vw;
+  background: #333;
+  opacity: 0.5;
+  overflow: hidden;
 `
 
 
@@ -111,34 +100,17 @@ class HomePage extends Component {
           </LoginButtonStyled> 
         </ToolbarStyled>
         </AppBarStyled>
-        <PageBody>
-        <HomeImg src={astronaut} />
-        <CardStyled>
-          <CardContent>
-            <TypographyStyled 
-            gutterBottom 
-            variant="h5" 
-            component="h2"
-            >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            </TypographyStyled>
-          </CardContent>
-          <div>
-          <CardMediaStyled
-            image={discovery}
-            title="Contemplative Reptile"
-          />
-          
-        <ApplyButtonStyled 
-          variant="contained" 
-          onClick={this.props.goToApplicationForm}>Inscreva-se aqui!
-        </ApplyButtonStyled>
-        </div>
-        </CardStyled>
-
-       </PageBody>
-        </HomeWrapper>
+          <HomeImg/>
+          <Aside>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur. Amet consectetur adipiscing elit duis. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Pellentesque habitant morbi tristique senectus et netus. Purus faucibus ornare suspendisse sed. Iaculis nunc sed augue lacus viverra vitae. Viverra justo nec ultrices dui sapien eget mi proin. Dignissim convallis aenean et tortor at risus. Enim neque volutpat ac tincidunt vitae semper quis lectus. Gravida arcu ac tortor dignissim convallis.</p>
+          <ApplyButtonStyled 
+              variant="contained" 
+              onClick={this.props.goToApplicationForm}>Inscreva-se aqui!
+            </ApplyButtonStyled>
+          </Aside>
+        <Divider />
+        <Footer>Sou o Footer</Footer>
+      </HomeWrapper>
     );
   }
 };
