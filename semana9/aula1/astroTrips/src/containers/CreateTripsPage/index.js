@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { createNewTrip } from "../../actions/trips";
+
 const Form = styled.form`
   width: 100%;
   height: 100vh;
@@ -104,11 +105,12 @@ class CreateTripsPage extends Component {
         name="date"
         label="Data"
         type="date"
-        defaultValue="30-11-2019"
         InputLabelProps={{
           shrink: true,
         }}
-        inputProps={{min:newDate}}
+        inputProps={{
+          min:newDate,
+        }}
         value={this.state.date}
         onChange={this.onChangeDate}
       />
