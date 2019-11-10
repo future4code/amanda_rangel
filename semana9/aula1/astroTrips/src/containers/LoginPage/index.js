@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { authenticateLogin } from "../../actions/auth"
+import { routes } from "../Router"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
@@ -12,15 +13,11 @@ import logo2 from "../../images/logo2.png"
 const LoginWrapper = styled.form`
   width: 100%;
   height: 100vh;
-  background-color: #9B9E9E;
 `
 
 const ErrorMessage = styled.p`
   color: red;
 `;
-const AppBarStyled = styled(AppBar)`
-
-`
 
 const ToolbarStyled = styled(Toolbar)`
   background: #050A1B;
@@ -47,6 +44,9 @@ const ButtonStyled = styled(Button)`
     color: white;
     height: 8vh;
   }  
+  &&:hover {
+    background: grey;
+  }
 `
 const TextFieldStyled = styled(TextField)`
   && {
@@ -80,11 +80,13 @@ class LoginPage extends Component {
 
     return (
       <LoginWrapper>
-      <AppBarStyled position="static">
+      <AppBar position="static">
         <ToolbarStyled>
-          <Name src={logo2} />
+          <Button onClick={this.props.goToHome}>
+            <Name src={logo2} />
+          </Button>
         </ToolbarStyled>
-        </AppBarStyled>
+        </AppBar>
         <LoginField> 
           <TextFieldStyled
             onChange={this.handleFieldChange}
@@ -120,7 +122,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    authenticateLogin: (email, password) => dispatch(authenticateLogin(email, password))
+    authenticateLogin: (email, password) => dispatch(authenticateLogin(email, password)),
+    goToHome: () => dispatch(push(routes.home)),
   };
 };
 

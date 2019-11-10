@@ -14,13 +14,7 @@ import styled from "styled-components";
 const HomeWrapper = styled.div`
  height: 100vh;
  width: 100vw;
- background-color: white;
- /* overflow: hidden; */
- /* background: #D34D02; */
 `
-const AppBarStyled = styled(AppBar)`
-`
-
 const ToolbarStyled = styled(Toolbar)`
   background: #050A1B;
   display: flex;
@@ -49,6 +43,9 @@ const ApplyButtonStyled = styled(Button)`
     margin-top: 20px;
     align-self: center;
   }   
+  &&:hover {
+    background: grey;
+  }
 `
 const LoginButtonStyled = styled(Button)`
   && {
@@ -56,6 +53,10 @@ const LoginButtonStyled = styled(Button)`
     color: #6B6B6B;
     font-weight: bold;
   }   
+  &&:hover {
+    background: grey;
+    color: white;
+  }
 `
 
 const Aside = styled.aside`
@@ -75,8 +76,6 @@ const Aside = styled.aside`
 const Footer = styled.div`
   height: 40px;
   width: 100vw;
-  background: #333;
-  opacity: 0.5;
   overflow: hidden;
 `
 
@@ -91,25 +90,27 @@ class HomePage extends Component {
     
     return (
       <HomeWrapper>
-        <AppBarStyled position="static">
+        <AppBar position="static">
         <ToolbarStyled>
-          <Name src={logo2} />
+          <Button onClick={this.props.goToHome}>
+            <Name src={logo2} />
+          </Button>
           <LoginButtonStyled 
           variant="contained" 
           onClick={this.props.goToLogin}>Login
           </LoginButtonStyled> 
         </ToolbarStyled>
-        </AppBarStyled>
+        </AppBar>
           <HomeImg/>
           <Aside>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur. Amet consectetur adipiscing elit duis. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Pellentesque habitant morbi tristique senectus et netus. Purus faucibus ornare suspendisse sed. Iaculis nunc sed augue lacus viverra vitae. Viverra justo nec ultrices dui sapien eget mi proin. Dignissim convallis aenean et tortor at risus. Enim neque volutpat ac tincidunt vitae semper quis lectus. Gravida arcu ac tortor dignissim convallis.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur. Amet consectetur adipiscing elit duis. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Pellentesque habitant morbi tristique senectus et netus. Purus faucibus ornare suspendisse sed. Iaculis nunc sed augue lacus viverra vitae. Viverra justo nec ultrices dui sapien eget mi proin. Dignissim convallis aenean et tortor at risus.</p>
           <ApplyButtonStyled 
               variant="contained" 
               onClick={this.props.goToApplicationForm}>Inscreva-se aqui!
             </ApplyButtonStyled>
           </Aside>
         <Divider />
-        <Footer>Sou o Footer</Footer>
+        <Footer />
       </HomeWrapper>
     );
   }
@@ -119,6 +120,7 @@ function mapDispatchToProps(dispatch) {
   return {
     goToApplicationForm: () => dispatch(push(routes.applicationForm)),
     goToLogin: () => dispatch(push(routes.login)),
+    goToHome: () => dispatch(push(routes.home)),
   };
 }
 

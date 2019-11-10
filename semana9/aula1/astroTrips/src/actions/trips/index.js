@@ -85,4 +85,18 @@ export const createNewTrip = (name, planet, date, description,durationInDays) =>
       });
   };
 
+  export const selectCandidate=(tripId, candidateId, approve)=> async(dispatch)=>{
+  
+    const response = await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips/${tripId}/candidates/${candidateId}/decide`,
+    {
+      approve,
+    },
+    {
+      headers:{
+        auth: token
+      }
+    })
+    
+  };
+
   
