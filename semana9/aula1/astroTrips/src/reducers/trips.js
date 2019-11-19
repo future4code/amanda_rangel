@@ -1,7 +1,6 @@
 const initialState = {
     trips: [],
     tripId: '',
-    candidates: [],
 };
 
 const trips = (state = initialState, action) => {

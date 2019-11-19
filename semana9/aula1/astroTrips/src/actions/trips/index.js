@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlNOMHM5NGpZNkhOU0hQdnlWazFzIiwiZW1haWwiOiJhbWFuZGFAZ21haWwuY29tIiwiaWF0IjoxNTczMTQ3MzkwfQ.C5hR8RdsqbDQOzZSySoCuMy7OVN8R8tLaM6L2qbJBp8"
+const token = window.localStorage.getItem("token");
 
 
 export const setTrips = (trips) => ({
@@ -42,17 +42,6 @@ export const getTripDetails = (tripId) => async (dispatch, getState) => {
   dispatch(setSelectedTrip(response.data.trip));
 };
 
-export const addCandidate = (name, profession, applicationText, age, country) => ({
-  type: "ADD_CANDIDATE",
-  payload: {
-    name,
-    profession,
-    applicationText,
-    age,
-    country,
-  }
-});
-
 export const postTripCandidate = (name, age, applicationText, profession, country, tripId) =>  async (dispatch) => {
     const data = {
       name:name, 
@@ -62,11 +51,12 @@ export const postTripCandidate = (name, age, applicationText, profession, countr
       country: country, 
       tripId: tripId
     }
-    const response = await axios.post(
+      await axios.post(
       `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips/${tripId}/apply`,
       data
     ); 
   };
+
 export const createNewTrip = (name, planet, date, description,durationInDays) =>  async (dispatch) => {
     const data = {
       name:name,
@@ -75,7 +65,7 @@ export const createNewTrip = (name, planet, date, description,durationInDays) =>
       description:description,
       durationInDays:durationInDays,
     }
-    const response = await axios.post(
+    await axios.post(
       `https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips`,
       data,
       {
@@ -87,7 +77,7 @@ export const createNewTrip = (name, planet, date, description,durationInDays) =>
 
   export const selectCandidate=(tripId, candidateId, approve)=> async(dispatch)=>{
   
-    const response = await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips/${tripId}/candidates/${candidateId}/decide`,
+    await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/futureX/amanda/trips/${tripId}/candidates/${candidateId}/decide`,
     {
       approve,
     },

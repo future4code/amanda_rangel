@@ -70,7 +70,6 @@ class LoginPage extends Component {
 
   onClickLogin = () => {
     const { email, password } = this.state;
-
     this.props.authenticateLogin(email, password);
   };
 
@@ -94,6 +93,7 @@ class LoginPage extends Component {
             type="email"
             value={email}
             variant="outlined"
+            label="Email"
           />
           <TextFieldStyled
             onChange={this.handleFieldChange}
@@ -101,6 +101,7 @@ class LoginPage extends Component {
             type="password"
             value={password}
             variant="outlined"
+            label="Senha"
           />
           <ButtonStyled 
           onClick={this.onClickLogin}

@@ -65,11 +65,13 @@ const IconButtonStyled = styled(IconButton)`
 `
 
 
+
 class TripDetailsPage extends Component {
   constructor(props) {
     super(props);
     
   }
+
 
  componentDidMount() {
    this.props.getTripDetails(this.props.tripId);
@@ -80,11 +82,13 @@ class TripDetailsPage extends Component {
   }
  }
 
- onClickAprove = (candidateId) => {
-  this.props.selectCandidate(this.props.tripId.id, candidateId, true);
+ onClickApprove = (candidateId) => {
+   const { tripId } = this.props;
+  this.props.selectCandidate(tripId.id, candidateId, true);
  }
  onClickReprove = (candidateId) => {
-  this.props.selectCandidate(this.props.tripId.id, candidateId, false);
+   const { tripId } = this.props;
+  this.props.selectCandidate(tripId.id, candidateId, false);
  }
 
   render() {
@@ -130,7 +134,7 @@ class TripDetailsPage extends Component {
               <ListItemStyled>
                 Nome: {candidate.name}
                 <IconButtonStyled>
-                <DoneIcon onClick={ () => this.onClickAprove(candidate.id)}/>
+                <DoneIcon onClick={ () => this.onClickApprove(candidate.id)}/>
               </IconButtonStyled>
               <IconButtonStyled>
                 <ClearIcon onClick={() => this.onClickReprove(candidate.id)}/> 

@@ -102,6 +102,7 @@ class CreateTripsPage extends Component {
     const { name, planet, date, description, durationInDays } = this.state
     event.preventDefault();
     this.props.createNewTrip(name, planet, date, description, durationInDays);
+    alert("Viagem criada com sucesso!")
   };
   
 
@@ -155,6 +156,7 @@ class CreateTripsPage extends Component {
           }}
           value={this.state.date}
           onChange={this.onChangeDate}
+          variant="outlined"
         />
           <label>Selecione o planeta de destino</label>
           <FormControl variant="outlined">

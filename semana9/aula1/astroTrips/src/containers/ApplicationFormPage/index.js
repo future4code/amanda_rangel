@@ -102,7 +102,9 @@ class ApplicationFormPage extends Component {
     const { name, age, profession, country, applicationText, tripId } = this.state
     event.preventDefault();
     this.props.postTripCandidate(name, age, applicationText, profession, country, tripId);
+    alert("Cadastro realizado com sucesso!")
   };
+
   
 
   
