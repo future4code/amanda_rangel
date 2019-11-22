@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Table, InputPicker, Input, Button } from "rsuite";
+import { Table, SelectPicker, Form, FormControl, FormGroup, ControlLabel, Button } from "rsuite";
 import styled from "styled-components"
 import {createNewTask, fetchAllTasks} from "../../actions/tasks";
 const { Column, HeaderCell, Cell } = Table;
@@ -10,7 +10,7 @@ const Container = styled.div`
 padding-top: 30px;
 `;
 
-const InputWrapper = styled.form`
+const FormStyled = styled(Form)`
   display: flex;
   justify-content: space-around;
   padding: 30px;
@@ -28,30 +28,106 @@ class Planner extends React.Component {
     this.props.fetchAllTasks();
   }
 
-  handleSubmit = () => {
-    this.props.createNewTask()
-};
+  onChangeText = text => {
+   this.setState({ text })
+  };
+
+  onChangeSelect = day => {
+    this.setState({ day })
+  };
+
+  clearForm = () => {
+    this.setState({
+      text: "",
+      day: "",
+    });
+  };
+
+  onClickBtn = () => {
+    const {text, day} = this.state;
+    this.props.createNewTask(text, day);
+    this.clearForm();
+  };
+
 
   render() {
-     return (
+    const weekDays = [
+      {
+        label: 'Segunda',
+        value: 'Segunda',
+      },
+      {
+        label: 'Terça',
+        value: 'Terça',
+      },
+      {
+        label: 'Quarta',
+        value: 'Quarta',
+      },
+      {
+        label: 'Quinta',
+        value: 'Quinta',
+      },
+      {
+        label: 'Sexta',
+        value: 'Sexta',
+      },
+      {
+        label: 'Sábado',
+        value: 'Sábado',
+      },
+      {
+        label: 'Domingo',
+        value: 'Domingo',
+      },
+    ];
+    return (
         <Container>
-          <InputWrapper onSubmit={this.handleSubmit}>
-            <Input style={{ width: 400 }} placeholder="Default Input" />
-            <InputPicker data="" style={{ width: 224 }} />
-            <Button style={{ width: 100 }} color="cyan">Criar</Button>
-
-          </InputWrapper>
+            <FormStyled>
+              <FormGroup>
+                <ControlLabel>Nova tarefa: </ControlLabel>
+                <FormControl
+                  type="text"
+                  name="text"
+                  style={{ width: 400 }}
+                  onChange={this.onChangeText}
+                  value={this.state.text}
+                />
+              </FormGroup>
+              <FormGroup>
+                <ControlLabel>Dia: </ControlLabel>
+                <SelectPicker
+                  onChange={this.onChangeSelect}
+                  placeholder="Dia da semana"
+                  searchable={false}
+                  data={weekDays}
+                  style={{ width: 224 }}
+                />
+              </FormGroup>
+              <Button
+                onClick={this.onClickBtn}
+                style={{ width: 100 }}
+                color="cyan">
+                Criar
+              </Button>
+             </FormStyled>
           <Table
             height={400}
-            data=""
+            data={this.props.tasks}
           >
-            <Column width={180} align="center" resizable>
+            <Column
+              width={180}
+              align="center"
+              resizable >
               <HeaderCell>Segunda</HeaderCell>
-              <Cell dataKey="Segunda" />
+              <Cell dataKey="text" />
             </Column>
-            <Column width={180} align="center" resizable>
+            <Column
+              width={180}
+              align="center"
+              resizable>
               <HeaderCell>Terça</HeaderCell>
-              <Cell dataKey="Terça" />
+              <Cell dataKey="text" />
             </Column>
             <Column width={180} align="center" resizable>
               <HeaderCell>Quarta</HeaderCell>
