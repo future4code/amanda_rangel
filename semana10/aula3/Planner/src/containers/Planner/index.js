@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Table, InputPicker, Input, Button } from "rsuite";
 import styled from "styled-components"
+import {createNewTask, fetchAllTasks} from "../../actions/tasks";
 const { Column, HeaderCell, Cell } = Table;
+
 
 const Container = styled.div`
 padding-top: 30px;
@@ -15,11 +17,25 @@ const InputWrapper = styled.form`
 `;
 
 class Planner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text:"",
+      day: "",
+    }
+  }
+  componentDidMount() {
+    this.props.fetchAllTasks();
+  }
+
+  handleSubmit = () => {
+    this.props.createNewTask()
+};
 
   render() {
-    return (
+     return (
         <Container>
-          <InputWrapper>
+          <InputWrapper onSubmit={this.handleSubmit}>
             <Input style={{ width: 400 }} placeholder="Default Input" />
             <InputPicker data="" style={{ width: 224 }} />
             <Button style={{ width: 100 }} color="cyan">Criar</Button>
@@ -63,4 +79,14 @@ class Planner extends React.Component {
   }
 }
 
-export default connect()(Planner);
+const mapStateToProps = state => ({
+  tasks: state.tasks.tasks,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchAllTasks: () => dispatch(fetchAllTasks()),
+    createNewTask: (text, day) => dispatch(createNewTask(text, day)),
+  });
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Planner);

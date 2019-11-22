@@ -10,13 +10,14 @@ const mockTasks = [
   {
     "id": "jGH9xnVXQMeU3tZOQ2Gy",
     "day": "terça",
-    "text": "Estudar"
+    "text": "estudar"
   }
 ];
 
  describe("Planner Action-Creators", () => {
   test("Set Tasks", () => {
     const expectedResult = {
+      type:"SET_TASKS",
       payload: {
         tasks: mockTasks,
       }
