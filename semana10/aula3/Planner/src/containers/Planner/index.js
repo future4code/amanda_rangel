@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Table, SelectPicker, Form, FormControl, FormGroup, ControlLabel, Button } from "rsuite";
+import { Divider, Form, FormControl, FormGroup, ControlLabel, Button } from "rsuite";
 import styled from "styled-components"
 import {createNewTask, fetchAllTasks} from "../../actions/tasks";
-const { Column, HeaderCell, Cell } = Table;
+import {WeekDayPicker} from "../../Components/WeekDayPicker"
+
 
 
 const Container = styled.div`
@@ -13,8 +14,32 @@ padding-top: 30px;
 const FormStyled = styled(Form)`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 30px;
+  color: darkcyan;
 `;
+
+const TableWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin:  0 20px;
+  color: grey;
+`;
+
+const Tasks = styled.div`
+  display: grid;
+  grid-gap: 20px;
+  padding: 0;
+  color: darkcyan;
+`;
+const TaskList = styled.ul`
+  list-style: square;
+  padding: 20px 10px;
+  color: grey;
+  display: grid;
+  grid-gap: 10px;
+`;
+
 
 class Planner extends React.Component {
   constructor(props) {
@@ -50,37 +75,24 @@ class Planner extends React.Component {
   };
 
 
+
   render() {
-    const weekDays = [
-      {
-        label: 'Segunda',
-        value: 'Segunda',
-      },
-      {
-        label: 'Terça',
-        value: 'Terça',
-      },
-      {
-        label: 'Quarta',
-        value: 'Quarta',
-      },
-      {
-        label: 'Quinta',
-        value: 'Quinta',
-      },
-      {
-        label: 'Sexta',
-        value: 'Sexta',
-      },
-      {
-        label: 'Sábado',
-        value: 'Sábado',
-      },
-      {
-        label: 'Domingo',
-        value: 'Domingo',
-      },
-    ];
+    const { tasks } = this.props;
+
+    const  mondayTasks = tasks.map(task =>
+      task.day === "Segunda" ? <li>{task.text}</li> : "");
+    const  tuesdayTasks = tasks.map(task =>
+      task.day === "Terça" ? <li>{task.text}</li> : "");
+    const  wednesdayTasks = tasks.map(task =>
+      task.day === "Quarta" ? <li>{task.text}</li> : "");
+    const  thursdayTasks = tasks.map(task =>
+      task.day === "Quinta" ? <li>{task.text}</li> : "");
+    const  fridayTasks = tasks.map(task =>
+      task.day === "Sexta" ? <li>{task.text}</li> : "");
+    const  saturdayTasks = tasks.map(task =>
+      task.day === "Sábado" ? <li>{task.text}</li> : "");
+    const  sundayTasks = tasks.map(task =>
+      task.day === "Domingo" ? <li>{task.text}</li> : "");
     return (
         <Container>
             <FormStyled>
@@ -96,60 +108,53 @@ class Planner extends React.Component {
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Dia: </ControlLabel>
-                <SelectPicker
+                <WeekDayPicker
                   onChange={this.onChangeSelect}
-                  placeholder="Dia da semana"
-                  searchable={false}
-                  data={weekDays}
-                  style={{ width: 224 }}
                 />
               </FormGroup>
               <Button
                 onClick={this.onClickBtn}
-                style={{ width: 100 }}
+                style={{ width: 150, height: 40 }}
                 color="cyan">
                 Criar
               </Button>
              </FormStyled>
-          <Table
-            height={400}
-            data={this.props.tasks}
-          >
-            <Column
-              width={180}
-              align="center"
-              resizable >
-              <HeaderCell>Segunda</HeaderCell>
-              <Cell dataKey="text" />
-            </Column>
-            <Column
-              width={180}
-              align="center"
-              resizable>
-              <HeaderCell>Terça</HeaderCell>
-              <Cell dataKey="text" />
-            </Column>
-            <Column width={180} align="center" resizable>
-              <HeaderCell>Quarta</HeaderCell>
-              <Cell dataKey="Quarta" />
-            </Column>
-            <Column width={180} align="center" resizable>
-              <HeaderCell>Quinta</HeaderCell>
-              <Cell dataKey="Quinta" />
-            </Column>
-            <Column width={180} align="center" resizable>
-              <HeaderCell>Sexta</HeaderCell>
-              <Cell dataKey="Sexta" />
-            </Column>
-            <Column width={180} align="center" resizable>
-              <HeaderCell>Sábado</HeaderCell>
-              <Cell dataKey="Sábado" />
-            </Column>
-            <Column width={180} align="center" resizable>
-              <HeaderCell>Domingo</HeaderCell>
-              <Cell dataKey="Domingo" />
-            </Column>
-          </Table>
+          <TableWrapper>
+            <Tasks>
+              <p>Segunda</p>
+              <TaskList>{mondayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Terça</p>
+              <TaskList>{tuesdayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Quarta</p>
+              <TaskList>{wednesdayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Quinta</p>
+              <TaskList>{thursdayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Sexta</p>
+              <TaskList>{fridayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Sábado</p>
+              <TaskList>{saturdayTasks}</TaskList>
+            </Tasks>
+            <Divider vertical />
+            <Tasks>
+              <p>Domingo</p>
+              <TaskList>{sundayTasks}</TaskList>
+            </Tasks>
+          </TableWrapper>
         </Container>
     )
   }
