@@ -1,0 +1,20 @@
+{
+  "name": "taskmanager",
+  "version": "0.0.1",
+  "description": "cria lista de tarefas e adiciona nova tarefa",
+  "main": "taskManager.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node tasksManager.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/future4code/amanda_rangel/tree/exercicios-node/semana12/aula1"
+  },
+  "keywords": [
+    "tarefas",
+    "lista"
+  ],
+  "author": "Amanda Rangel",
+  "license": "ISC"
+}

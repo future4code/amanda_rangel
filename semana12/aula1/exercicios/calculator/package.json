@@ -1,0 +1,19 @@
+{
+  "name": "calculator",
+  "version": "0.0.1",
+  "description": "pacote que faz calculos simples, como adiçao, subtraçao, multiplicacao e divisao, ao receber dois numeros como parametros.",
+  "main": "calc.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node calc.js"
+  },
+  "keywords": [
+    "calcular",
+    "adicao",
+    "subtraçao",
+    "multiplicacao",
+    "divisao"
+  ],
+  "author": "Amanda Rangel",
+  "license": "ISC"
+}
