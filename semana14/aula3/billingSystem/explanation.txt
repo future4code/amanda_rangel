@@ -1,0 +1,12 @@
+Place: classe abstrata que possui a propriedade cep
+
+Client: interface que possui as propriedades clientName, clientNumber e consumedEnergy, além do método calculateBill().
+
+Industry: classe filha (extendida) da Place que possui as propriedades industryName e industryNumber, além do cep que vem da classe mãe.
+
+Trade: classe filha (extendida) da Place que possui as propriedades name e cnpj, além do cep que vem da classe mãe.
+
+Residence: classe filha (extendida) da Place que possui as propriedades name e cpf, além do cep que vem da classe mãe.
+
+
+
