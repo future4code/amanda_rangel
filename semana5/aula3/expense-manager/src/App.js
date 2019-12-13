@@ -62,20 +62,20 @@ class App extends Component {
 
    updateFilterValue = (newFilterValue) => {
     this.setState({
-      filtros: {
+      filters: {
         ...this.state.filters,
         ...newFilterValue,
       },
     })
   }
 
-  filterValues() {
+  filterValues = () => {
     const {expensesList, filters} = this.state
     
     let filterValues = expensesList.filter((expensesList) => {
-        return expensesList.amount <(filters.maxValue || Infinity)})
+        return expensesList.amount <=(filters.maxValue || Infinity)})
       .filter((expensesList) => {
-        return expensesList.amount > (filters.minValue || 0)
+        return expensesList.amount >= (filters.minValue || 0)
       })
       
     return filterValues  
@@ -84,6 +84,8 @@ class App extends Component {
 
  
   render() {
+
+    const filteredValues = this.filterValues();
       
     return (
       <AppContainer>
@@ -98,14 +100,13 @@ class App extends Component {
       
        {this.state.isExpensesVisible && (
         <ExpensesContainer>
-          <FilterExpenses
-          onFilterChange={this.updateFilterValue}>
-          </FilterExpenses>
+          <FilterExpenses onFilterChange={this.updateFilterValue}/>  
           <Expenses 
             toggleRegisterVisibility={this.toggleRegisterVisibility}
             toggleExpensesVisibility={this.toggleExpensesVisibility}
-            expensesList={this.state.expensesList}>
-          </Expenses>
+            filteredExpenses={filteredValues}
+          />
+         
         </ExpensesContainer>
        )}
       </AppContainer>

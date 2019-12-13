@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
-import { checkTask } from '../../actions/taskList'
-import { deleteTask } from '../../actions/taskList'
+import { checkTask, deleteTask } from '../../actions/taskList'
+
 
 
 const ListStyled = styled(List)`
@@ -35,14 +35,7 @@ class TaskListItem extends React.Component {
 	
 	}
 
-	onClickCheck = () => {
-		this.props.checkTask(this.props.task.id)
-	}
-
-	onClickDeleteBtn = () => {
-		this.props.deleteTask(this.props.task.id)
-	}
-
+	
 	 
 	render() {
 		
@@ -51,8 +44,8 @@ class TaskListItem extends React.Component {
 				<ListStyled>
 				<Divider />
           <ListItem>
-						<CheckboxStyled onClick={this.onClickCheck}/>
-							{this.props.task.checked ? (
+						<CheckboxStyled onClick={this.props.checkTask}/>
+							{this.props.task.done ? (
 								<ListItemTextStyled>			
 									{this.props.task.text}
 								</ListItemTextStyled>
@@ -62,7 +55,7 @@ class TaskListItem extends React.Component {
 							</ListItemText>
 							)}
             <ListItemSecondaryAction>
-              <IconButton onclick={this.onClickDeleteBtn} >
+              <IconButton onClick={this.props.deleteTask} >
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
@@ -71,8 +64,9 @@ class TaskListItem extends React.Component {
       	</ListStyled>
 			</div>
 		)
-	}
-}
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return {
 		deleteTask: id => dispatch(deleteTask(id)),

@@ -74,7 +74,7 @@ export class Expenses extends Component {
 
     render() {
     
-    const allExpensesList = this.props.expensesList.map((item) => {
+    const allExpensesList = this.props.filteredExpenses.map((item) => {
       return (<ExpensesList>
         <p>{item.description}</p>
         <p>{item.type}</p>
@@ -82,7 +82,7 @@ export class Expenses extends Component {
       </ExpensesList>);
     });
     
-    const sumAmount = this.props.expensesList.reduce((sum, i) => (sum += i.amount), 0)
+    const sumAmount = this.props.filteredExpenses.reduce((sum, i) => (sum += i.amount), 0)
 
     return (
       <ExpensesContainer>
