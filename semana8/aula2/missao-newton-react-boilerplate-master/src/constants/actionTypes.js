@@ -1,6 +1,8 @@
 
 export const ADD_TASK = 'ADD_TASK';
 
+export const UPDATE_TASK_TEXT = 'UPDATE_TASK_TEXT';
+
 export const DELETE_TASK = 'DELETE_TASK';
 
 export const CHECK_TASK = 'CHECK_TASK';

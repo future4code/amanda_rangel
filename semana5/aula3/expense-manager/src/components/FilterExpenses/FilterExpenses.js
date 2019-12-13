@@ -30,7 +30,7 @@ const FilterInput = styled.input`
 
 const FilterExpenses = (props) => {
 
-  const FilterExpensesMaxValue = (event) => {
+  const filterExpensesMaxValue = (event) => {
     const value = Number(event.target.value)
 
     const newFilterValue = {
@@ -40,14 +40,14 @@ const FilterExpenses = (props) => {
     props.onFilterChange(newFilterValue)
   }
 
-    const filterExpensesMinValue = (event) => {
-      const value = Number(event.target.value)
+  const filterExpensesMinValue = (event) => {
+    const value = Number(event.target.value)
 
-        const newFilterValue = {
-          'minValue': value,
-        }
-      props.onFilterChange(newFilterValue)
+    const newFilterValue = {
+      'minValue': value,
     }
+    props.onFilterChange(newFilterValue)
+  }
 
   return (
     <FilterExpensesContainer>
@@ -71,7 +71,7 @@ const FilterExpenses = (props) => {
         type="number"
         placeholder="Valor Máximo"
         min = {0}
-        onChange={FilterExpensesMaxValue}
+        onChange={filterExpensesMaxValue}
         />
       </FilterWrap>
     </FilterExpensesContainer>

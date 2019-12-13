@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { addTask } from '../../actions/taskList'
+import { updateTaskText, addTask } from '../../actions/taskList'
 
 const TextFieldStyled = styled(TextField)`
 	margin: 10px;
@@ -27,21 +25,24 @@ const ButtonStyled = styled(Button)`
 `
 
 class TasksInput extends React.Component {
-	constructor () {
-		super()
-		this.state = {
-			inputValue: ''
-		}
+	constructor (props) {
+		super(props)
 	}
 
-	handleChange = event => {
-    this.setState({
-      inputValue: event.target.value,
-    });
-	};
+	onUpdateTaskText = (event) => {
+		this.props.updateTaskText(event.target.value)
+	}
 	
 	onClickBtn = () => {
-		this.props.addTask(this.state.inputValue)
+		const newId = Date.now();
+		this.props.addNewTask(newId)
+	}
+
+	onEnterPress = (event) => {
+		if(event.key === 'Enter') {
+			const newId = Date.now();
+			this.props.addNewTask(newId)
+		}
 	}
 
 	render() {
@@ -55,8 +56,9 @@ class TasksInput extends React.Component {
           InputLabelProps={{
             shrink: true,
 					}}
-					onChange={this.handleChange}
-					value={this.state.inputValue}
+					onChange={this.onUpdateTaskText}
+					value={this.props.currentTaskText}
+					onKeyPress={this.onEnterPress}
         />
 				<ButtonStyled
 				variant='contained'
@@ -64,18 +66,16 @@ class TasksInput extends React.Component {
 				>Criar</ButtonStyled>
 			</InputContainer>
 		)
-	}
-}
+	};
+};
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		addTask: (text) => dispatch(addTask(text))
-	}
-}
-const mapStateToProps = (state) => {
-	return {
-		tasks: state.tasks
-	}
-}
+const mapStateToProps = (state) => ({
+	currentTaskText: state.tasks.currentTaskText
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	updateTaskText: (newText) => dispatch(updateTaskText(newText)),
+	addNewTask: (id) => dispatch(addTask(id))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksInput);
