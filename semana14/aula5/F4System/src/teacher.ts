@@ -1,5 +1,5 @@
 import {User} from "./user";
-import {JSONFileManager} from "./jsonFileManager";
+import {f4JSONFileManager, JSONFileManager} from "./jsonFileManager";
 
 export class Teacher implements User {
   constructor(
@@ -14,8 +14,8 @@ export class Teacher implements User {
     this.specialty = [];
   }
   registerTeacher(name:string, email: string, dateOfBirth: string, specialty: Specialty[]):void {
-    const addTeacher = new JSONFileManager('f4system.json');
-    addTeacher.writeObjetcToFile({name, email, dateOfBirth, specialty})
+    const addTeacher = new f4JSONFileManager('f4system.json');
+    addTeacher.writeDataToFile({name, email, dateOfBirth, specialty})
   }
 }
 

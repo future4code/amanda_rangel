@@ -1,4 +1,4 @@
-import {JSONFileManager} from "./jsonFileManager";
+import {f4JSONFileManager, JSONFileManager} from "./jsonFileManager";
 import {User} from "./user";
 import {Mission} from "./mission";
 
@@ -14,7 +14,7 @@ export class Student implements User {
   }
 
   registerStudent(name: string, email: string, dateOfBirth: string, classType: Mission): void{
-    const newStudent = new JSONFileManager('f4system.json');
-    newStudent.writeObjetcToFile({name, email, dateOfBirth, classType})
+    const newStudent = new f4JSONFileManager('f4system.json');
+    newStudent.writeDataToFile({name, email, dateOfBirth, classType})
   }
 }

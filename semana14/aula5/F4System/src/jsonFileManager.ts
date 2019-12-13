@@ -13,3 +13,16 @@ export class JSONFileManager {
     return JSON.parse(fs.readFileSync(this.fileName).toString());
   }
 }
+
+export class f4JSONFileManager extends JSONFileManager {
+  writeDataToFile(objectToSave: object) {
+    let allData: object[] = [];
+    try {
+      allData = this.getObjectFromFile();
+
+    } catch (err) {
+    }
+    allData.push(objectToSave);
+    this.writeObjetcToFile(allData);
+  }
+}

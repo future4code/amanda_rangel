@@ -1,4 +1,4 @@
-import {JSONFileManager} from "./jsonFileManager";
+import {f4JSONFileManager, JSONFileManager} from "./jsonFileManager";
 import {Mission} from "./mission";
 import {Teacher} from "./teacher";
 import {Student} from "./student";
@@ -17,7 +17,7 @@ export class WebMission extends Mission {
   }
 
   createClass(patron: string, startDate: string, endDate: string, teachers: Teacher[], student: Student[]): void {
-    const newWebClass = new JSONFileManager('f4system.json');
-    newWebClass.writeObjetcToFile({startDate, endDate, teachers, student, patron})
+    const newWebClass = new f4JSONFileManager('f4system.json');
+    newWebClass.writeDataToFile({startDate, endDate, teachers, student, patron})
   }
 }
