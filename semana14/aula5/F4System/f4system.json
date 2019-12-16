@@ -1,0 +1,34 @@
+git [
+    {
+        "name": "Amanda",
+        "email": "arm@gmail.com",
+        "dateOfBirth": "01/01/2001",
+        "classType": {
+            "startDate": "06/01/2020",
+            "endDate": "20/07/2020",
+            "teachers": [],
+            "students": [],
+            "patron": "Newton"
+        }
+    },
+    {
+        "startDate": "06/01/2020",
+        "endDate": "20/07/2020",
+        "teachers": [],
+        "student": [
+            {
+                "name": "Amanda",
+                "email": "arm@gmail.com",
+                "dateOfBirth": "01/01/2001",
+                "classType": {
+                    "startDate": "06/01/2020",
+                    "endDate": "20/07/2020",
+                    "teachers": [],
+                    "students": [],
+                    "patron": "Newton"
+                }
+            }
+        ],
+        "patron": "Newton"
+    }
+]
