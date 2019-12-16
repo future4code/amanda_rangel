@@ -6,8 +6,8 @@ export class JSONFileManager {
     this.fileName = fileName
   }
 
-  saveToJSON(array: object[]) {
-    fs.writeFileSync(this.fileName, JSON.stringify(array, null, 2))
+  saveToJSON(objectToSave: object) {
+    fs.writeFileSync(this.fileName, JSON.stringify(objectToSave, null, 2))
   }
 
   getJSONContent() {

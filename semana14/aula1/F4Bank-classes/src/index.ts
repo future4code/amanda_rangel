@@ -11,4 +11,5 @@ const userAccount2: UserAccount = new UserAccount('Bernardo Rangel', 32, '076389
 
 
 const bank = new Bank();
-console.log(bank.createAccount(userAccount1));
+bank.createAccount('Amanda Rangel', '07268871619', 32);
+bank.createAccount('Bernardo Mendonça', '07638910613', 32);

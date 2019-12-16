@@ -3,19 +3,16 @@ import {JSONFileManager} from "./JSONFileManager";
 
 export class Bank {
   accounts: UserAccount[];
-  fileManager: JSONFileManager;
+  fileManager = new JSONFileManager('banksystem.json');
 
-  // constructor(accounts: UserAccount[], fileManager: JSONFileManager) {
-  //
-  // }
+  constructor() {
+    this.accounts = []
+  }
 
-   async createAccount(account: UserAccount) {
-    const bankFileManager = new JSONFileManager('banksystem.json');
-    this.accounts = await bankFileManager.getJSONContent();
-    if ( this.accounts.length === 0) {
-      this.accounts.push(account);
-      await bankFileManager.saveToJSON(this.accounts);
-    }
+   createAccount(name: string, cpf: string, age: number) : void {
+      const newAccount = new UserAccount(name, age, cpf,0, []);
+      this.accounts.push(newAccount);
+      this.fileManager.saveToJSON(this.accounts);
   }
 }
 

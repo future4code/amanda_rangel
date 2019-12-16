@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Amanda Rangel",
+    "age": 32,
+    "cpf": "07268871619",
+    "balance": 0,
+    "transactions": []
+  },
+  {
+    "name": "Bernardo Mendonça",
+    "age": 32,
+    "cpf": "07638910613",
+    "balance": 0,
+    "transactions": []
+  }
+]
