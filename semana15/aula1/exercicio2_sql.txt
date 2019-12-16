@@ -1,0 +1,75 @@
+Exercício 2 parte 1
+
+DESCRIBE correntistas;
+
+a) O nome e o email de todos os correntistas brasileiros que estão devendo (conta corrente com valor negativo).
+
+SELECT
+	primeiro_nome,
+	ultimo_nome,
+	email
+FROM
+	correntistas
+WHERE
+	pais = "Brazil"
+	AND conta_corrente < 0;
+
+b) O nome e o genero de todos que sejam correntistas peruanos **ou** tenham nascido antes de 1990.
+
+ SELECT
+	primeiro_nome,
+	ultimo_nome,
+	genero
+FROM
+	correntistas
+WHERE
+	pais = "Peru"
+	OR YEAR(aniversario) < 1990;
+
+c) O último nome de todos os correntistas cujo primeiro nome começa com a letra A.
+ 
+SELECT
+	ultimo_nome
+FROM
+	correntistas
+WHERE
+	primeiro_nome LIKE "A%";
+
+d)  O nome e a data de nascimendo de todos os correntistas nascidos depois do ano 2000 com mais do que 1000 reais na conta
+
+SELECT
+	primeiro_nome,
+	ultimo_nome,
+	aniversario
+FROM
+	correntistas
+WHERE
+	YEAR(aniversario) > 2000
+	AND conta_corrente > 1000;
+
+Exercício 2 parte 2
+
+USE amanda
+
+CREATE TABLE clients(
+id int(11) PRIMARY KEY,
+first_name varchar(50),
+last_name varchar(50),
+email varchar(50),
+gender varchar(50),
+account double NOt NULL,
+country varchar(50),
+day_of_birth date );
+
+INSERT INTO clients (id, first_name, last_name, email, gender, account, country, day_of_birth)
+VALUES 
+(1,'Barney','MacIlhagga','bmacilhagga0@myspace.com','M',11464.41,'Argentina','1997-06-28'),
+(2,'Evelyn','Martinot','emartinot1@webs.com','F',5446.23,'Argentina','1988-05-11'),
+(3,'Elianore','Fallen','efallen2@wix.com','F',2298.82,'Brazil','2001-09-10'),
+(4,'Carmela','Cornils','ccornils3@washingtonpost.com','F',4822.56,'Brazil','1985-04-23'),
+(5,'Florella','Venediktov','fvenediktov4@goo.ne.jp','F',1860.85,'Brazil','1989-12-07');
+
+SELECT * FROM clients;
+
+
+
