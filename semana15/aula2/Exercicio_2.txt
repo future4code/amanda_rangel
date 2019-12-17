@@ -1,0 +1,64 @@
+Exercicio 2
+
+1. Os 100 primeiros correntistas brasileiros com mais do que 3000 reais na conta corrente.
+
+SELECT * FROM correntistas
+WHERE pais="Brazil" && conta_corrente > 3000
+LIMIT 100;
+
+2. A quantidade de mulheres com mais do que 32 anos.
+
+SELECT COUNT(genero) "Mulheres > 32 anos" 
+FROM correntistas
+WHERE genero = "F" && 
+DATEDIFF(CURRENT_DATE(), aniversario)/365 > 32;
+
+3. A soma do valor de todas as contas correntes do Peru cujo dono tenha mais do que 25 anos.
+
+SELECT pais, SUM(conta_corrente) "Soma dos valores - CC" 
+FROM correntistas
+WHERE pais="Peru" &&
+DATEDIFF(CURRENT_DATE(), aniversario)/365 > 25;
+
+4. A quantidade de Homens e Mulheres por país.
+
+SELECT pais, genero, COUNT(genero) from correntistas
+GROUP BY pais, genero
+ORDER BY pais;
+
+5. A data de aniversário que mais se repete e a quantidade de vezes que aparece.
+
+SELECT aniversario, COUNT(aniversario) "Qtde de repetições"
+FROM correntistas
+GROUP BY aniversario
+HAVING COUNT(aniversario) > 1
+ORDER BY COUNT(aniversario) DESC;
+
+6. A média de idade (o número de anos entre hoje e a data de nascimento) de cada país.
+
+SELECT pais, AVG(DATEDIFF(CURRENT_DATE(), aniversario)/365) "Média de idade"
+FROM correntistas
+GROUP BY pais
+ORDER BY pais;
+
+7. Os aniversariantes do mês atual.
+
+SELECT  primeiro_nome, aniversario 
+FROM correntistas
+WHERE MONTH(aniversario) = "12"
+ORDER BY DATEDIFF(CURRENT_DATE(), aniversario)/365 DESC;
+
+8. A média do valor da conta corrente por país. Importante: o nome dos países deve ser exibido em caixa baixa (letras minúsculas).
+
+SELECT LOWER(pais), AVG(conta_corrente)
+FROM correntistas 
+GROUP BY pais
+ORDER BY pais;
+
+9. Os 3 nomes que mais se repetem e quantas vezes cada um apareceu.
+
+SELECT primeiro_nome, COUNT(primeiro_nome) "Qtde de repetições"
+FROM correntistas
+GROUP BY primeiro_nome
+HAVING COUNT(primeiro_nome) > 1
+ORDER BY COUNT(primeiro_nome) DESC;
