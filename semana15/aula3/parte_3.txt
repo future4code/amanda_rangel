@@ -1,0 +1,116 @@
+﻿       Parte 3 – Exercícios
+        
+    1. Todos os livros de um autor específico a sua escolha, mostrando pelo menos o nome do autor e o nome do livro 
+
+SELECT autores.primeiro_nome "Nome do Autor", livros.titulo "Titulo do Livro"
+FROM livros
+JOIN autores ON
+livros.autor_id=autores.id;
+       
+    2. Todos os livros cujo primeiro nome do autor começa com A, mostrando o nome completo do autor e do livro 
+
+SELECT autores.primeiro_nome "Nome do Autor", livros.titulo "Titulo do Livro"
+FROM livros
+JOIN autores ON
+livros.autor_id=autores.id;
+
+    3. Quantos livros cada autor possui na biblioteca, mostrando pelo menos o nome do autor e o número de livros 
+
+
+SELECT autores.primeiro_nome "Nome do autor", COUNT(livros.titulo) "Número de Livros"
+FROM livros
+JOIN autores ON
+livros.autor_id = autores.id
+GROUP BY autores.primeiro_nome
+ORDER BY COUNT(livros.titulo) DESC;
+
+
+    4. O livro mais alugado de todos, mostrando pelo menos o nome do livro 
+
+
+SELECT autores.primeiro_nome "Nome do autor", COUNT(livros.titulo) "Número de Livros"
+FROM livros
+JOIN autores ON
+livros.autor_id = autores.id
+GROUP BY autores.primeiro_nome
+ORDER BY COUNT(livros.titulo) DESC;
+
+    5. Quantos livros cada usuário alugou, mostrando pelo menos o nome do usuário e o número de livros 
+
+SELECT usuarios.primeiro_nome "Nome do usuário", COUNT(livros.titulo)"Número de livros alugado"
+FROM livros 
+JOIN usuarios_livros
+ON livros.id=usuarios_livros.livros_id
+JOIN usuarios
+ON usuarios.id=usuarios_livros.usuario_id
+GROUP BY usuarios.primeiro_nome
+ORDER BY usuarios.primeiro_nome;
+
+    6. Todos os livros de editoras fundadas antes de 1990, mostrando pelo menos o nome do livro, o nome da editora e a data de fundação 
+
+SELECT usuarios.primeiro_nome "Nome do usuário", COUNT(livros.titulo)"Número de livros alugado"
+FROM livros 
+JOIN usuarios_livros
+ON livros.id=usuarios_livros.livros_id
+JOIN usuarios
+ON usuarios.id=usuarios_livros.usuario_id
+GROUP BY usuarios.primeiro_nome
+ORDER BY usuarios.primeiro_nome;
+
+    7. O usuário mais velho que alugou um livro específico a sua escolha 
+
+SELECT usuarios.primeiro_nome, livros.titulo, usuarios.data_nascimento
+FROM usuarios
+JOIN usuarios_livros
+ON usuarios.id=usuarios_livros.usuario_id
+JOIN livros
+ON livros.id=usuarios_livros.livros_id
+WHERE livros.titulo="I Know You Got Soul"
+ORDER BY usuarios.data_nascimento
+LIMIT 1;
+
+    8. Qual foi o país que alugou mais livros na biblioteca (olhar pra nacionalidade dos usuários) 
+
+SELECT usuarios.primeiro_nome, livros.titulo, usuarios.data_nascimento
+FROM usuarios
+JOIN usuarios_livros
+ON usuarios.id=usuarios_livros.usuario_id
+JOIN livros
+ON livros.id=usuarios_livros.livros_id
+WHERE livros.titulo="I Know You Got Soul"
+ORDER BY usuarios.data_nascimento
+LIMIT 1;
+
+    9. As duas editoras que possuem mais livros alugados por pessoas com mais de 20 anos 
+
+SELECT editoras.nome "Editoras", COUNT(livros.titulo)"Livros alugados"
+FROM editoras 
+JOIN livros
+ON editoras.id=livros.editora_id
+JOIN usuarios_livros
+ON livros.id=usuarios_livros.livros_id
+JOIN usuarios
+ON usuarios.id=usuarios_livros.usuario_id
+WHERE DATEDIFF(CURRENT_DATE(), usuarios.data_nascimento)/365 > 20
+GROUP BY editoras.nome
+ORDER BY COUNT(livros.titulo) DESC
+LIMIT 2;
+
+    10. Livros alugados que foram lançados antes da data de nascimento do usuário que o alugou 
+
+SELECT livros.titulo "Livro", livros.ano "Lançamento", usuarios.primeiro_nome "Usuário", usuarios.data_nascimento "Nascimento"
+FROM livros
+JOIN usuarios_livros
+ON livros.id=usuarios_livros.livros_id
+JOIN usuarios
+ON usuarios.id=usuarios_livros.usuario_id
+WHERE livros.ano < usuarios.data_nascimento;
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+﻿
+Parte 1 – Criar Tabelas
+
+
+CREATE TABLE autores (
+id int NOT NULL,
+primeiro_nome varchar(100) NOT NULL,
+ultimo_nome varchar(100) NOT NULL,
+nacionalidade varchar(100) NOT NULL,
+PRIMARY KEY(id)
+);
+
+ALTER TABLE autores
+MODIFY COLUMN nacionalidade varchar(100) NULL;
+
+CREATE TABLE editoras (
+id int NOT NULL,
+nome varchar(100) NOT NULL,
+cidade varchar(100) NOT NULL,
+fundação date NOT NULL,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE livros (
+id int NOT NULL,
+titulo varchar(100) NOT NULL,
+autor_id int NOT NULL,
+editora_id int NOT NULL,
+ano date NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (autor_id)
+REFERENCES autores(id),
+FOREIGN KEY (editora_id)
+REFERENCES editoras(id)
+);
+
+ALTER TABLE livros
+MODIFY COLUMN id int NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE usuarios (
+id int NOT NULL,
+primeiro_nome varchar(100) NOT NULL,
+ultimo_nome varchar(100) NOT NULL,
+nacionalidade varchar(100) NOT NULL,
+data_nascimento date NOT NULL,
+PRIMARY KEY(id)
+);
+
+ALTER TABLE usuarios
+MODIFY COLUMN id int NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE usuarios_livros (
+usuario_id int NOT NULL,
+livros_id int NOT NULL,
+PRIMARY KEY (usuario_id, livros_id),
+FOREIGN KEY (usuario_id)
+REFERENCES usuarios(id),
+FOREIGN KEY (livros_id)
+REFERENCES livros(id)
+);
+
+
