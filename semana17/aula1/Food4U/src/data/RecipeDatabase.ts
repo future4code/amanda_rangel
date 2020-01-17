@@ -14,7 +14,7 @@ export class RecipeDatabase implements RecipeGateway{
   });
 
    async createRecipe(recipe: Recipe): Promise<Recipe> {
-      await this.connection('food_users').insert(
+      await this.connection('recipes').insert(
       {
               title: recipe.getTitle(),
               description: recipe.getDescription(),
