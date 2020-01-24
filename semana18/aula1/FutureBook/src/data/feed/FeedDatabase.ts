@@ -11,6 +11,7 @@ export class FeedDatabase extends KnexDatabaseConnection implements FeedGateway 
       JOIN f4_posts p ON ur.followed_id=p.user_id
       JOIN f4_users u ON ur.followed_id=u.id
       WHERE follower_id='${userId}'
+      ORDER BY p.post_date desc
       LIMIT ${postLimit} OFFSET ${offset}   
     `);
     const posts: PostFeedModel[] = result[0];

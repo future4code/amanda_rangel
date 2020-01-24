@@ -122,7 +122,7 @@ app.post("/createPost", async(req: Request, res: Response) => {
   }
 });
 
-app.get("/Feed", async (req: Request, res: Response) => {
+app.get("/feed", async (req: Request, res: Response) => {
   try {
     const userId = authenticate(req);
     const feedUseCase = new FeedUseCase(
