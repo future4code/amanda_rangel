@@ -8,12 +8,13 @@ import {LoginUseCase} from "../business/usecases/LoginUseCase";
 import {FollowUserInput, ToggleUserRelationUseCase} from "../business/usecases/ToggleUserRelationUseCase";
 import {CreatePostInput, CreatePostUseCase} from "../business/usecases/CreatePostUseCase";
 import {PostDatabase} from "../data/post/PostDatabase";
-import {FeedInput, FeedUseCase} from "../business/usecases/FeedUseCase";
-import {FeedDatabase} from "../data/feed/FeedDatabase";
+import {FeedInput, GetFeedUseCase} from "../business/usecases/GetFeedUseCase";
+import {GetFeedDatabase} from "../data/feed/GetFeedDatabase";
+import {FeedByTypeInput, GetFeedByTypeUseCase} from "../business/usecases/GetFeedByTypeUseCase";
 
 
-const app = express()
-app.use(express.json()) // Linha mágica (middleware)
+const app = express();
+app.use(express.json()); // Linha mágica (middleware)
 
 const getTokenFromHeaders = (headers: any): string => {
   return (headers["auth"] as string) || "";
@@ -24,10 +25,6 @@ function authenticate(req: Request) {
   return authService.getUserIdFromToken(getTokenFromHeaders(req.headers));
 }
 
-function getUserName(req: Request) {
-  const authService = new JwtImplementation();
-  return authService.getUserNameFromToken(getTokenFromHeaders(req.headers))
-}
 
 app.post("/signup", async(req: Request, res: Response) => {
   try {
@@ -125,10 +122,9 @@ app.post("/createPost", async(req: Request, res: Response) => {
 app.get("/feed", async (req: Request, res: Response) => {
   try {
     const userId = authenticate(req);
-    const feedUseCase = new FeedUseCase(
-      new FeedDatabase()
+    const feedUseCase = new GetFeedUseCase(
+      new GetFeedDatabase()
     );
-
     const input: FeedInput = {
       userId,
       page: req.body.page
@@ -139,6 +135,26 @@ app.get("/feed", async (req: Request, res: Response) => {
       res.status(404).send({
         errorMessage: error.message
       })
+  }
+});
+
+app.get("/feedByType", async(req: Request, res: Response) => {
+  try {
+    const userId = authenticate(req);
+    const feedByTypeUseCase = new GetFeedByTypeUseCase(
+      new GetFeedDatabase()
+    );
+    const input: FeedByTypeInput = {
+      userId,
+      page: req.body.page,
+      postType: req.body.postType
+    };
+    const result = await feedByTypeUseCase.execute(input);
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(404).send({
+      errorMessage: error.message
+    })
   }
 });
 
