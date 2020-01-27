@@ -1,0 +1,26 @@
+Exercício 1
+
+1. Os 5 funcionários com maior salário.
+
+SELECT * FROM funcionarios
+ORDER BY salario DESC 
+LIMIT 5;
+
+2. A média salarial para cada local de trabalho.
+
+SELECT local_de_trabalho, AVG(salario) "Média salarial" from funcionarios 
+GROUP BY(local_de_trabalho)
+ORDER BY "Média salarial" DESC;
+
+3. A quantidade de funcionários de cada gênero por local de trabalho.
+
+SELECT local_de_trabalho, genero, COUNT(genero) FROM funcionarios
+GROUP BY local_de_trabalho, genero
+ORDER BY local_de_trabalho;
+
+
+4. Os 10 funcionários mais antigos (contratados há mais tempo).
+
+SELECT * FROM funcionarios
+ORDER BY DATEDIFF(CURRENT_DATE(), data_contratacao) DESC
+LIMIT 10;

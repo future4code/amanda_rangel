@@ -1,0 +1,48 @@
+USE exercicios;
+DESCRIBE funcionarios;
+SELECT * FROM funcionarios;
+
+Exercício 1 parte 1
+
+a) O nome e salário de todas as funcionárias que ganham acima de 2000
+
+SELECT nome, salario FROM funcionarios WHERE genero= "F" AND salario>2000;
+
+b) O nome e a data de contratação de todos os funcionários que trabalham no salão e são empregados desde 2004
+
+SELECT nome, data_contratacao FROM funcionarios WHERE data_contratacao BETWEEN '2004-01-01 ' AND '2004-12-31';
+
+c) O nome e a data de nascimento de todos os funcionários cujo nome contenha a string "ei"
+
+SELECT nome, data_nascimento FROM funcionarios WHERE nome LIKE "%ei%";
+
+d) O nome, salário e data_nascimento de todos os funcionários com mais de 21 anos que recebem acima de 1300
+
+SELECT nome, salario, data_nascimento FROM funcionarios WHERE (YEAR(CURDATE())-YEAR(data_nascimento)) > 21 and SALARIO>1300;
+
+Exercício 1 parte 2
+
+CREATE TABLE employees3 (
+ id int PRIMARY KEY , 
+ name varchar(100) NOT NULL,  
+ salary double NOT NULL , 
+ workplace varchar(100) NOT NULL, 
+ gender varchar(1) NOT NULL , 
+ date_of_birth date NOT NULL,
+ date_of_hire date NOT NULL, 
+);
+
+
+INSERT
+	INTO
+	employees (id,
+	name,
+	salary,
+	workplace,
+	date_of_hire,
+	gender,
+	date_of_birth)
+VALUES (1,'Amanda',2000,'caixa','2006-01-01','F','1987-10-19');
+
+
+

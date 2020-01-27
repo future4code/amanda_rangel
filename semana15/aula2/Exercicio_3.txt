@@ -1,0 +1,23 @@
+1. Adicione uma nova coluna chamada "estado_civil", não nula, com o valor padrão de "Solteiro(a)"
+
+ALTER TABLE clients
+ADD marital_status varchar(15) NOT NULL DEFAULT 'Solteiro(a)';
+
+
+2. Atualize todas as entradas no banco seguindo a regra: para maiores de 30 anos o estado civil deve ser "Casado(a)".
+
+UPDATE clients
+SET marital_status = 'Casado(a)'
+WHERE DATEDIFF(CURRENT_DATE(), day_of_birth)/365 > 30;
+
+3. Adicione uma nova coluna chamada "numero_da_sorte", não nula, com valor padrão de 0
+
+ALTER TABLE clients
+ADD lucky_number int NOT NULL DEFAULT 0;
+
+4. Atualize todas as entradas do banco atribuindo um número aleatório entre 1-1000 (incluindo os extremos) para a coluna "numero_da_sorte" de cada um dos correntistas, **atenção: este número deve ser inteiro, sem casas decimais.**
+
+UPDATE clients
+SET lucky_number = CEIL(RAND() * 100)
+WHERE lucky_number = 1;
+
