@@ -1,12 +1,20 @@
-import { AddressInfo } from 'net'
-import app from './presentation'
+import {Endpoints, Event} from "./presentation";
 
-// Trecho do código responsável por inicializar todas as APIs
-const server = app.listen(process.env.PORT || 3000, () => {
-  if(server){
-    const address = server.address() as AddressInfo;
-    console.log(`Server is running in http://localhost:${address.port}`);
-  } else {
-    console.error(`Failure upon starting server.`);
+
+exports.handler = async (event: Event) => {
+  switch (event.path) {
+    case "/signup":
+      return Endpoints.signUp("/signup", {
+        path: event.path,
+        name: event.name,
+        email: event.email,
+        dateOfBirth: event.dateOfBirth,
+        picture: event.picture,
+        password: event.password
+      });
+    default:
+      return;
   }
-});
+
+};
+

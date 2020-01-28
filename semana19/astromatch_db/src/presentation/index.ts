@@ -1,4 +1,3 @@
-import express, {Request, Response} from 'express'
 import {JwtImplementation} from "../services/jwt/JwtImplementation";
 import {SignUpUseCase} from "../business/usecases/auth/SignUpUseCase";
 import {UserDatabase} from "../data/user/UserDatabase";
@@ -6,12 +5,13 @@ import {BcryptImplementation} from "../services/bcrypt/BcryptImplementation";
 import {V4IdGenerator} from "../services/idGenerator/V4IdGenerator";
 
 
-const app = express();
-app.use(express.json());
+export class Endpoints {
+  constructor(
+  ) {}
 
-app.post('/signup', async (req: Request, res: Response) => {
-  try {
-    const signUpUseCase = new SignUpUseCase(
+  static async signUp(path: '/signup', event: Event) {
+    try {
+      const signUpUseCase = new SignUpUseCase(
       new UserDatabase(),
       new JwtImplementation(),
       new BcryptImplementation(),
@@ -19,28 +19,38 @@ app.post('/signup', async (req: Request, res: Response) => {
       new V4IdGenerator()
     );
 
-    const result = await signUpUseCase.execute({
-      name: req.body.name,
-      email: req.body.email,
-      dateOfBirth: req.body.dateOfBirth,
-      picture: req.body.picture,
-      password: req.body.password
+      const result = await signUpUseCase.execute({
+      name: event.name,
+      email: event.email,
+      dateOfBirth: event.dateOfBirth,
+      picture: event.picture,
+      password: event.password
     });
-    res.status(200).send({
+      return {
+      status: 200,
       result,
       message: "Usuário criado com sucesso"
-    })
+     }
   } catch (e) {
     if (e.errno === 1062) {
-      res.send({
+      return {
         error: "Usuário já cadastrado"
-      })
+      }
     } else {
-      res.status(404).send({
+      return {
         errorMessage: e.message
-      })
+      }
     }
   }
-});
+  }
+}
 
-export default app
+export interface Event {
+  path: string
+  name: string,
+  email: string,
+  dateOfBirth: string,
+  picture: string,
+  password: string
+}
+

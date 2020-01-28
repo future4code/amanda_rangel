@@ -17,14 +17,14 @@ export class SignUpUseCase {
   async execute(input: SignUpInput) {
     this.validateInput(input);
     const id = this.idGeneratorGateway.generateId();
-    await this.encryptGateway.encrypt(input.password);
+    const encryptedPassword = await this.encryptGateway.encrypt(input.password);
     const newUser = new User(
       id,
       input.name,
       input.email,
       input.dateOfBirth,
       input.picture,
-      input.password
+      encryptedPassword
     );
     await this.registerUserGateway.registerUser(newUser);
     return this.generateTokenGateway.generateToken({
