@@ -1,7 +1,7 @@
-import {Endpoints, Event} from "./presentation";
+import {Endpoints} from "./presentation";
 
 
-exports.handler = async (event: Event) => {
+exports.handler = async (event: any) => {
   switch (event.path) {
     case "/signup":
       return Endpoints.signUp("/signup", {
@@ -12,9 +12,14 @@ exports.handler = async (event: Event) => {
         picture: event.picture,
         password: event.password
       });
+    case "/login":
+      return Endpoints.login("/login", {
+        path: event.path,
+        email: event.email,
+        password: event.password
+    });
     default:
       return;
   }
-
 };
 

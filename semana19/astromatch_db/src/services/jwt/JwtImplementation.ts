@@ -1,8 +1,12 @@
 import * as jwt from "jsonwebtoken"
-import {GenerateTokenGateway, VerifyTokenGateway} from "../../business/gateways/token/tokenGateway";
+import {
+  GenerateTokenGateway,
+  GetUserIdFromToken,
+  VerifyTokenGateway
+} from "../../business/gateways/token/tokenGateway";
 import {User} from "../../business/entities/User";
 
-export class JwtImplementation implements GenerateTokenGateway, VerifyTokenGateway {
+export class JwtImplementation implements GenerateTokenGateway, VerifyTokenGateway, GetUserIdFromToken {
 
   static SECRET_KEY: string = "JWT_SECRET";
   static EXPIRES_IN: string = "1h";
@@ -26,5 +30,20 @@ export class JwtImplementation implements GenerateTokenGateway, VerifyTokenGatew
     return jwt.verify(token, JwtImplementation.getJwtSecretKey());
   }
 
+  getUserIdFromToken(token: string): string {
+    const jwtData = jwt.verify(token, JwtImplementation.getJwtSecretKey()) as JwtDataModel;
+    return jwtData.id
+  }
+
 }
 
+export interface JwtDataModel {
+  id: string,
+  name: string,
+  email: string,
+  dateOfBirth: string,
+  picture: string,
+  password: string,
+  iat: number,
+  exp: number
+}

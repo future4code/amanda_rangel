@@ -1,9 +1,10 @@
 import {KnexDatabaseConnection} from "../knex/knexDatabaseConnection";
-import {RegisterUserGateway} from "../../business/gateways/user/userGateway";
+import {GetUserGateway, RegisterUserGateway} from "../../business/gateways/user/userGateway";
 import {User} from "../../business/entities/User";
 
 export class UserDatabase extends  KnexDatabaseConnection implements
-  RegisterUserGateway {
+  RegisterUserGateway,
+  GetUserGateway {
 
   private static USER_TABLE: string = 'users';
 
@@ -18,6 +19,29 @@ export class UserDatabase extends  KnexDatabaseConnection implements
           '${user.getPicture()}',
           '${user.getPassword()}'        
         )`
+    )
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    try {
+      const result = await this.connection.raw(
+        `SELECT * FROM ${UserDatabase.USER_TABLE} 
+         WHERE email='${email}'`
+      );
+      return result[0].length === 0 ? undefined : this.UserDbModel(result[0][0]);
+    }catch (error) {
+      throw new Error(error.message)
+    }
+  }
+
+  private UserDbModel(dbModel: any): User {
+    return new User(
+      dbModel.id,
+      dbModel.name,
+      dbModel.email,
+      dbModel.dateOfBirth,
+      dbModel.picture,
+      dbModel.password
     )
   }
 }
