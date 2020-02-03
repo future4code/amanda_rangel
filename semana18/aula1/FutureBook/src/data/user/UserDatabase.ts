@@ -10,33 +10,45 @@ export class UserDatabase extends KnexDatabaseConnection implements
  private static TABLE_NAME: string = "f4_users";
 
   async createUser(user: User) {
-    await this.connection.raw(
-    `INSERT INTO ${UserDatabase.TABLE_NAME} (id, name, email, password, type) 
-     VALUES(
-       "${user.getId()}",
-       "${user.getName()}",
-       "${user.getEmail()}",
-       "${user.getPassword()}",
-       "${user.getType()}"
-     )`
-    );
+    try {
+      await this.connection.raw(
+        `INSERT INTO ${UserDatabase.TABLE_NAME} (id, name, email, password, type) 
+         VALUES(
+           "${user.getId()}",
+           "${user.getName()}",
+           "${user.getEmail()}",
+           "${user.getPassword()}",
+           "${user.getType()}"
+          )`
+      );
+    } catch (error) {
+      throw new Error(error.message)
+    }
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {
-    const result = await this.connection.raw(
-      `SELECT * FROM ${UserDatabase.TABLE_NAME} 
-      WHERE email='${email}'`
-    );
-    return result[0].length === 0 ? undefined : this.UserDbModel(result[0][0]);
+    try {
+      const result = await this.connection.raw(
+        `SELECT * FROM ${UserDatabase.TABLE_NAME} 
+         WHERE email='${email}'`
+      );
+      return result[0].length === 0 ? undefined : this.UserDbModel(result[0][0]);
+    }catch (error) {
+      throw new Error(error.message)
+    }
   }
 
   async findUser(id: string): Promise<boolean> {
-    const result = await this.connection.raw(
-      `SELECT * FROM ${UserDatabase.TABLE_NAME} 
-      WHERE id='${id}'`
-    );
-    const returnedUser = result[0][0];
-    return Boolean(returnedUser)
+    try {
+      const result = await this.connection.raw(
+        `SELECT * FROM ${UserDatabase.TABLE_NAME} 
+         WHERE id='${id}'`
+      );
+      const returnedUser = result[0][0];
+      return Boolean(returnedUser)
+    }catch (error) {
+      throw new Error(error.message)
+    }
   }
 
   async toggleUserRelation(followerUserId: string, followedUserId: string): Promise<void> {
@@ -59,9 +71,8 @@ export class UserDatabase extends KnexDatabaseConnection implements
           AND followed_id='${followedUserId}'
         `)
       }
-    } catch (e) {
-      console.log(e);
-      throw new Error("Não foi possível concluir a operação")
+    } catch (error) {
+      throw new Error(error.message )
     }
   }
 
