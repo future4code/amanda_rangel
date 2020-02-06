@@ -5,10 +5,15 @@ export interface RegisterUserDataSource {
 }
 
 export interface ChangePasswordDataSource {
-  changePassword(userId: string, newPassword: string): Promise<void>
+  changePassword(userId: string, newPassword: string): Promise<any>
 }
 
-export interface GetUserIdFromTokenDataSource {
-  getId(token:string): string
+export interface GetUserByEmailDataSource {
+  getUser(email: string): Promise<object>
 }
+
+export interface SignInDataSource {
+  signIn(email: string, password: string): Promise<object>
+}
+
 

@@ -1,17 +1,20 @@
 import {RegisterUserDataSource} from "../../dataSources/userDataSource";
 import {IdGeneratorDataSource} from "../../dataSources/idGeneratorDataSource";
 import {User} from "../../entities/User";
+import {TokenGeneratorDataSource} from "../../dataSources/auth";
 
 
 export class SignUpUseCase {
   constructor(
-    private registerUserGateway: RegisterUserDataSource,
-    private idGeneratorGateway: IdGeneratorDataSource
+    private registerUserDataSource: RegisterUserDataSource,
+    private idGeneratorDataSource: IdGeneratorDataSource,
+    private tokenGeneratorDataSource: TokenGeneratorDataSource
+
   ) {}
 
   async execute(input: SignUpInput) {
     this.validateInput(input);
-    const id = this.idGeneratorGateway.generateId();
+    const id = this.idGeneratorDataSource.generateId();
     const newUser = new User(
       id,
       input.name,
@@ -20,7 +23,11 @@ export class SignUpUseCase {
       input.picture,
       input.password
     );
-    await this.registerUserGateway.registerUser(newUser);
+    await this.registerUserDataSource.registerUser(newUser);
+    const token = await this.tokenGeneratorDataSource.generateToken(newUser);
+    return {
+      token
+    }
   }
 
   validateInput(input: SignUpInput) {
