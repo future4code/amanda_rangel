@@ -1,6 +1,5 @@
 import {
   ChangePasswordDataSource,
-  GetUserByEmailDataSource,
   RegisterUserDataSource,
   SignInDataSource
 } from "../../business/dataSources/userDataSource";
@@ -8,13 +7,13 @@ import {User} from "../../business/entities/User";
 import {FirebaseAdminFirestore} from "../FirebaseAdminFirestore";
 import admin from "firebase-admin";
 import firebase from "firebase";
+import {convertDate} from "../../services/dateConverter";
 
 
 export class UserDatabase extends FirebaseAdminFirestore implements
   RegisterUserDataSource,
   ChangePasswordDataSource,
-  SignInDataSource,
-  GetUserByEmailDataSource {
+  SignInDataSource {
 
   private static USER_COLLECTION: string = 'users';
 
@@ -24,10 +23,10 @@ export class UserDatabase extends FirebaseAdminFirestore implements
   }
 
   async registerUser(user: User): Promise<any> {
-    return await this.db.collection(UserDatabase.USER_COLLECTION).doc(user.getId()).set({
+    return await this.db.collection(UserDatabase.USER_COLLECTION).doc().set({
       name: user.getName(),
       email: user.getEmail(),
-      dateOfBirth: user.getDateOfBirth(),
+      dateOfBirth: convertDate(user.getDateOfBirth()),
       picture: user.getPicture(),
     });
   }
@@ -37,7 +36,7 @@ export class UserDatabase extends FirebaseAdminFirestore implements
       password: newPassword
     });
   }
-
 }
+
 
 

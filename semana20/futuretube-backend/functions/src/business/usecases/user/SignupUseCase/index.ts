@@ -1,7 +1,7 @@
-import {RegisterUserDataSource} from "../../dataSources/userDataSource";
-import {IdGeneratorDataSource} from "../../dataSources/idGeneratorDataSource";
-import {User} from "../../entities/User";
-import {TokenGeneratorDataSource} from "../../dataSources/auth";
+import {RegisterUserDataSource} from "../../../dataSources/userDataSource";
+import {IdGeneratorDataSource} from "../../../dataSources/idGeneratorDataSource";
+import {User} from "../../../entities/User";
+import {TokenGeneratorDataSource} from "../../../dataSources/auth";
 
 
 export class SignUpUseCase {

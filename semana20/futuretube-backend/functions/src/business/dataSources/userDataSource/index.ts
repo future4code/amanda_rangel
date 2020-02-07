@@ -8,8 +8,8 @@ export interface ChangePasswordDataSource {
   changePassword(userId: string, newPassword: string): Promise<any>
 }
 
-export interface GetUserByEmailDataSource {
-  getUser(email: string): Promise<object>
+export interface GetUserIdByEmailDataSource {
+  getUserId(email: string): Promise<string>
 }
 
 export interface SignInDataSource {

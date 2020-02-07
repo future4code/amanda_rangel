@@ -1,4 +1,4 @@
-import {SignInDataSource} from "../../dataSources/userDataSource";
+import {SignInDataSource} from "../../../dataSources/userDataSource";
 
 
 export class LoginUseCase {

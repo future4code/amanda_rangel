@@ -1,5 +1,5 @@
-import { ChangePasswordDataSource} from "../../dataSources/userDataSource";
-import {AuthenticateDataSource} from "../../dataSources/auth";
+import { ChangePasswordDataSource} from "../../../dataSources/userDataSource";
+import {AuthenticateDataSource} from "../../../dataSources/auth";
 
 export class ChangePasswordUseCase {
   constructor(
