@@ -6,13 +6,21 @@ import {SignUpUseCase} from "./business/usecases/user/SignupUseCase";
 import {UserDatabase} from "./data/UserDatabase";
 import {V4IdGenerator} from "./services/V4IdGenerator";
 import {ChangePasswordUseCase} from "./business/usecases/user/ChangePasswordUseCase";
-import {FirebaseAuthGenerateTokenWithUser, FirebaseAuthWithToken} from "./services/FirebaseAuth";
+import {
+ FirebaseAuthGenerateTokenWithUser,
+ FirebaseAuthUpdateUser,
+ FirebaseAuthWithToken
+} from "./services/FirebaseAuth";
 import firebase from "firebase";
 import {firebaseConfig} from "./services/FirebaseConfig";
 import {LoginUseCase} from "./business/usecases/user/LoginUseCase";
 import {UploadVideoUseCase} from "./business/usecases/video/UploadVideoUseCase";
 import {VideoDatabase} from "./data/VideoDatabase";
 import {GetUserVideosUseCase} from "./business/usecases/video/GetUserVideosUseCase";
+import {GetAllVideosUseCase} from "./business/usecases/video/GetAllVideosUseCase";
+import {GetVideoInfoUseCase} from "./business/usecases/video/GetVideoInfoUseCase";
+import {EditVideoInfoUseCase} from "./business/usecases/video/EditVideoInfoUseCase";
+import {DeleteVideoUseCase} from "./business/usecases/DeleteVideoUseCase";
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -23,9 +31,11 @@ admin.initializeApp(functions.config().firebase);
 firebase.initializeApp(firebaseConfig);
 
 app.post("/signup", async(req: Request, res: Response) => {
+
  try {
   const registerUserUseCase = new SignUpUseCase(
     new UserDatabase(),
+    new FirebaseAuthUpdateUser(),
     new V4IdGenerator(),
     new FirebaseAuthGenerateTokenWithUser()
   );
@@ -101,6 +111,7 @@ app.post("/uploadVideo", async (req: Request, res: Response) => {
   const token = req.headers.auth as string;
   const authentication = new FirebaseAuthWithToken();
   const userId = await authentication.authenticate(token);
+  const videoId = new V4IdGenerator().generateId();
 
   const uploadVideoUseCase = new UploadVideoUseCase(
     new VideoDatabase(),
@@ -108,6 +119,7 @@ app.post("/uploadVideo", async (req: Request, res: Response) => {
     new FirebaseAuthWithToken()
   );
   const result = await uploadVideoUseCase.execute({
+     videoId,
      token,
      title: req.body.title,
      description: req.body.description,
@@ -129,7 +141,7 @@ app.post("/uploadVideo", async (req: Request, res: Response) => {
 app.get("/getUserVideos", async (req: Request, res: Response) => {
  try {
   const getUserVideosUseCase = new GetUserVideosUseCase(
-    new VideoDatabase(),
+    new UserDatabase(),
     new VideoDatabase()
   );
   const result = await getUserVideosUseCase.execute(req.body.email);
@@ -144,6 +156,88 @@ app.get("/getUserVideos", async (req: Request, res: Response) => {
 }
 });
 
+app.get("/getAllVideos", async (req: Request, res: Response) => {
+ try {
+  const getAllVideosUseCase = new GetAllVideosUseCase(
+    new VideoDatabase()
+  );
+  const result = await getAllVideosUseCase.execute();
+  res.status(200).send({
+   result
+  });
+ } catch (error) {
+  res.status(404).send({
+   error,
+   errorMessage: error.message
+  })
+ }
+});
 
+app.get('/getVideoInfo', async (req: Request, res: Response) => {
+ try {
+  const getVideoInfoUseCase =
+    new GetVideoInfoUseCase(
+     new VideoDatabase(),
+     new UserDatabase(),
+  );
+  const result = await getVideoInfoUseCase.execute(req.body.videoId, req.body.userEmail);
+  res.status(200).send({
+   result
+  });
+ } catch (error) {
+  res.status(404).send({
+   error,
+   errorMessage: error.message
+  })
+ }
+});
+
+app.post('/editVideoInfo', async (req: Request, res: Response) => {
+ try {
+  const token = req.headers.auth as string;
+  const authentication = new FirebaseAuthWithToken();
+  await authentication.authenticate(token);
+
+  const editVideoInfoUseCase = new EditVideoInfoUseCase(
+    new VideoDatabase()
+  );
+  const result = await editVideoInfoUseCase.execute({
+   videoId: req.body.videoId,
+   newTitle: req.body.newTitle,
+   newDescription: req.body.newDescription
+  });
+  res.status(200).send({
+   result,
+   message: "Informações do vídeo editadas com sucesso"
+  });
+ } catch (error) {
+  res.status(404).send({
+   error,
+   errorMessage: error.message
+  })
+ }
+});
+
+app.post('/deleteVideo', async (req: Request, res: Response) => {
+ try {
+  const token = req.headers.auth as string;
+  const authentication = new FirebaseAuthWithToken();
+  await authentication.authenticate(token);
+
+  const deleteVideoUseCase = new DeleteVideoUseCase(
+    new VideoDatabase()
+  );
+  const result = await deleteVideoUseCase.execute(req.body.videoId);
+  res.status(200).send({
+   result,
+   message: "Video deletado com sucesso"
+  });
+ } catch (error) {
+  res.status(404).send({
+   error,
+   errorMessage: error.message
+  })
+ }
+});
 
 export default app

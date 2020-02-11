@@ -15,10 +15,10 @@ export class UploadVideoUseCase {
 
   async execute(input: UploadVideoInput) {
     this.validateInput(input);
-    const id = this.idGeneratorDataSource.generateId();
+    const videoId = this.idGeneratorDataSource.generateId();
     const userId = await this.authenticateDataSource.authenticate(input.token);
     const newVideo = new Video(
-      id,
+      videoId,
       input.title,
       input.description,
       input.videoUrl,
@@ -38,7 +38,8 @@ export class UploadVideoUseCase {
 }
 
 export interface UploadVideoInput {
-  token: string
+  videoId: string,
+  token: string,
   title: string,
   description: string,
   videoUrl: string,

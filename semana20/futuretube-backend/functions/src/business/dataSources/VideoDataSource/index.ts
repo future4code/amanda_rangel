@@ -7,3 +7,20 @@ export interface UploadVideoDataSource {
 export interface GetUserVideosDataSource {
   getVideos(userId: string): Promise<any>
 }
+
+export interface GetAllVideosDataSource {
+  getAllVideos(): Promise<any>;
+}
+
+export interface GetVideoInfoDataSource {
+
+  getVideoInfo(videoId: string): Promise<object>
+}
+
+export interface EditVideoInfoDataSource {
+  editVideoInfo(videoId: string, newTitle: string, newDescription: string): Promise<void>
+}
+
+export interface DeleteVideoDataSource {
+  deleteVideo(videoId: string): Promise<void>
+}

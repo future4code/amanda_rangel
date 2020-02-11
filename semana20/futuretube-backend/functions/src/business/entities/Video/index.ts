@@ -1,6 +1,6 @@
 export class Video {
   constructor(
-    private id: string,
+    private videoId: string,
     private title: string,
     private description: string,
     private videoUrl: string,
@@ -8,7 +8,7 @@ export class Video {
   ) {}
 
   public getId(): string {
-    return this.id;
+    return this.videoId;
   }
 
   public getTitle(): string {

@@ -1,4 +1,4 @@
-import {RegisterUserDataSource} from "../../../dataSources/userDataSource";
+import {RegisterUserDataSource, UpdateUserDataSource} from "../../../dataSources/userDataSource";
 import {IdGeneratorDataSource} from "../../../dataSources/idGeneratorDataSource";
 import {User} from "../../../entities/User";
 import {TokenGeneratorDataSource} from "../../../dataSources/auth";
@@ -7,9 +7,9 @@ import {TokenGeneratorDataSource} from "../../../dataSources/auth";
 export class SignUpUseCase {
   constructor(
     private registerUserDataSource: RegisterUserDataSource,
+    private updateUserDataSource: UpdateUserDataSource,
     private idGeneratorDataSource: IdGeneratorDataSource,
     private tokenGeneratorDataSource: TokenGeneratorDataSource
-
   ) {}
 
   async execute(input: SignUpInput) {
@@ -25,8 +25,10 @@ export class SignUpUseCase {
     );
     await this.registerUserDataSource.registerUser(newUser);
     const token = await this.tokenGeneratorDataSource.generateToken(newUser);
+    const updatedAuthProfile = await this.updateUserDataSource.updateUser(newUser);
     return {
-      token
+      token,
+      updatedAuthProfile
     }
   }
 
