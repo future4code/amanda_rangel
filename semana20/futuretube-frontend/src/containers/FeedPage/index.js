@@ -1,28 +1,44 @@
-import React, {useEffect, useState} from "react";
-import {getFeed, setVideos} from "../../actions/feed";
-import {Container} from "@material-ui/core";
+import React, {useEffect} from "react";
+import {getFeed} from "../../actions/feed";
 import VideoCard from "../../components/VideoCard";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import AppBar from "../../components/AppBar";
+import Divider from "@material-ui/core/Divider";
+
+const ContainerStyled = styled.div`
+  display: grid;
+  grid-gap: 20px;
+`;
 
 const VideosContainer = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-gap: 10px;
-  justify-content: center;
-  padding-top: 0;
-  padding-bottom: 10px;
+  margin-top: 20px;
+  @media (min-width: 300px) and (max-width: 500px) {
+    display: grid;
+    grid-gap: 10px;
+    justify-content: center;
+  }
+  @media (min-width: 500px) and (max-width: 1440px) {
+    display: grid;
+    grid-template-rows: 2fr 2fr;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-gap: 20px;
+    justify-content: center;
+  }
 `;
+
 
 const FeedPage = (props) => {
 
 
   useEffect(() => {
     props.getFeed();
-  },[]);
+  });
 
   return (
-    <Container>
+    <ContainerStyled>
+      <AppBar/>
+      <Divider light/>
       <VideosContainer>
         {props.videos.map(video => (<VideoCard
                                 videoUrl={video.videoUrl}
@@ -34,7 +50,7 @@ const FeedPage = (props) => {
         ))}
 
       </VideosContainer>
-    </Container>
+    </ContainerStyled>
   )
 };
 

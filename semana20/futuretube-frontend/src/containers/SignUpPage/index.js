@@ -40,7 +40,8 @@ const TextTitle = styled.div`
     font-weight: bold;
     text-align: center;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 `;
 
 const FormContainer= styled.form`
@@ -64,8 +65,7 @@ const LoadPicture = styled.div`
 const PhotoCam = styled(IconButton)`
     width: 50px;
     height: 52px;  
-    margin-bottom: 5px;
-    
+    margin-bottom: 5px;  
 `;
 
 const PictureInput = styled.input`
@@ -80,18 +80,19 @@ const PhotoCameraIcon = styled(PhotoCamera)`
 `;
 
 const ChoosePicButton= styled(Button)`
-    height: 40px;
+    height: 70px;
     border-radius: 2px;
         && {
     background-color: darkgrey;
     color: white;
-    }
-    margin-top: 16px;    
+    margin-top: 30px;  
+    }    
+      
     @media (min-width: 300px) and (max-width: 500px) {
-      width: 50vw;
+      width: 40vw;
     }
     @media (min-width: 500px) and (max-width: 1440px) {
-      width: 67vw;
+      width: 40vw;
     }
 `;
 
@@ -104,6 +105,21 @@ const SubmitButton= styled(Button)`
     color: white;
     }
     margin-top: 16px;
+`;
+
+const ImgInputPicture = styled.div`
+  border: lightgray dashed;  
+  padding: 10px;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PicText = styled.p`
+  color: #333;
+  font-weight: bold;
+  text-align: center;
 `;
 
   const SignUpPage = (props) => {
@@ -254,9 +270,12 @@ const SubmitButton= styled(Button)`
           />
           <LoadPicture>
             <label htmlFor="icon-button-file">
-              <PhotoCam color="primary" aria-label="upload picture" component="span">
-                <PhotoCameraIcon />
-              </PhotoCam>
+              <ImgInputPicture>
+                <PhotoCam color="primary" aria-label="upload picture" component="span">
+                  <PhotoCameraIcon />
+                </PhotoCam>
+                <PicText>Selecione uma imagem</PicText>
+              </ImgInputPicture>
             </label>
             <label htmlFor="outlined-button-file">
               <ChoosePicButton onClick={onClickUpload} variant="contained"  disableElevation component="span">

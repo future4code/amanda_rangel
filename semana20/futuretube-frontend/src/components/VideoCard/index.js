@@ -1,52 +1,57 @@
-import {Container, Paper} from "@material-ui/core";
-import ReactPlayer from 'react-player'
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import styled from "styled-components";
+import Divider from "@material-ui/core/Divider";
+import Avatar from "@material-ui/core/Avatar";
 
-const ReactPlayerStyled = styled(ReactPlayer)`
-
+const ContainerStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 `;
 
 const PlayerWrapper = styled.div`
-  position: relative;
-  padding-top: 0;
-  width: 90vw;
-  height: 55vh;
+   width: 85%;
+   align-self: center;
+   
 `;
 
 const TypographyWrapper = styled.div`
-  border: solid lightgray;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 10px 0 20px 10px;
  `;
 
 const TypographyStyled = styled(Typography)`
   text-align: center;
   font-family: Roboto, sans-serif;
+
   color: #333;
-  padding-top: 5px;
+  padding-left: 20px;
 `;
 
 const VideoCard = (props) => {
   return(
-    <Container>
+    <ContainerStyled>
           <PlayerWrapper>
-            <ReactPlayerStyled
-              url={props.videoUrl}
-              playing={false}
+            <video
+              src={props.videoUrl}
               width="100%"
-              heigth="100%"
-              controls={true}
+              controls
             />
             <TypographyWrapper>
-            <TypographyStyled gutterBottom variant="h5" component="h2">
-              {props.title}
-            </TypographyStyled>
-            <TypographyStyled variant="body2" color="textSecondary" component="p">
-              {props.description}
-            </TypographyStyled>
+              <Avatar alt="Foto Usuário" src="/static/images/avatar/1.jpg" />
+              <div>
+                <TypographyStyled>
+                  {props.title}
+                </TypographyStyled>
+              </div>
             </TypographyWrapper>
+            <Divider />
           </PlayerWrapper>
-    </Container>
+    </ContainerStyled>
   )
 };
 

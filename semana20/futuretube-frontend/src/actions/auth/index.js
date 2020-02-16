@@ -11,6 +11,14 @@ const setErrorMessage = message => ({
     }
 });
 
+const setUserPhoto= userPhoto => ({
+  type: "SET_ERROR_MESSAGE",
+  payload: {
+    userPhoto
+  }
+});
+
+
 const clearErrorMessage = () => ({type: "CLEAR_ERROR_MESSAGE"});
 
 export const login = (email,password) => async dispatch => {
@@ -21,7 +29,6 @@ export const login = (email,password) => async dispatch => {
   try {
     const res = await axios.post(`${baseUrl}/login`, data);
     localStorage.setItem('token', res.data.result.token);
-
     // dispatch(push(routes.feedPage))
   }
   catch (error) {

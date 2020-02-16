@@ -1,9 +1,8 @@
 {
-  "name": "react-redux-testing",
+  "name": "futuretube-amanda",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/index.js",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.9.2",
@@ -11,7 +10,7 @@
     "@material-ui/pickers": "^3.2.10",
     "connected-react-router": "6.5.2",
     "date-fns": "^2.9.0",
-    "firebase": "^7.8.1",
+    "firebase": "^7.8.2",
     "history": "4.10.1",
     "jss": "10.0.0",
     "react": "16.8.6",
@@ -20,7 +19,7 @@
     "react-player": "^1.15.2",
     "react-redux": "7.1.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.4.0",
     "react-test-renderer": "16.12.0",
     "redux": "4.0.4",
     "redux-thunk": "^2.3.0",
