@@ -32,7 +32,10 @@ console.log(sumNumbers(5));
 
 // terceiro exercício
 
-const printArray = (array: number[]) => {
-  
+const printArray = (array: number[], index: number = 0) => {
+  if (index < array.length) {
+    console.log(array[index])
+    printArray(array, index + 1)
+  }  
 }
- ""
+console.log(printArray([1, 2, 3, 4, 5]))

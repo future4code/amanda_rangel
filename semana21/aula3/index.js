@@ -21,3 +21,12 @@ var sumNumbers = function (n) {
     return n + sumNumbers(n - 1);
 };
 console.log(sumNumbers(5));
+// terceiro exercício
+var printArray = function (array, index) {
+    if (index === void 0) { index = 0; }
+    if (index < array.length) {
+        console.log(array[index]);
+        printArray(array, index + 1);
+    }
+};
+console.log(printArray([1, 2, 3, 4, 5]));
